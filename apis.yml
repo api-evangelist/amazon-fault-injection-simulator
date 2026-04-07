@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - AWS
   - Chaos Engineering
+  - DevOps
   - Fault Injection
   - Resilience Testing
-  - DevOps
-  - AWS
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/apis.yml
 created: '2026-03-16'
