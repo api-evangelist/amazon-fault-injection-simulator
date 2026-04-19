@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-action-structure.json",
+  "description": "An available FIS fault injection action",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Action ID",
+      "example": "aws:ec2:stop-instances"
+    },
+    "arn": {
+      "type": "string",
+      "description": "Action ARN"
+    },
+    "description": {
+      "type": "string",
+      "description": "Action description",
+      "example": "Stop EC2 instances"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Action parameters",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "targets": {
+      "type": "object",
+      "description": "Target definitions",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Resource tags",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "Action"
+}

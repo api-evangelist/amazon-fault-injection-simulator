@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-experiment-state-structure.json",
+  "description": "Current state of an experiment",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Experiment status",
+      "example": "running",
+      "enum": [
+        "pending",
+        "initiating",
+        "running",
+        "completed",
+        "stopping",
+        "stopped",
+        "failed"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Status reason",
+      "example": "Experiment running normally"
+    }
+  },
+  "name": "ExperimentState"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-schema/amazon-fis-target-resource-type-schema.json",
+  "title": "TargetResourceType",
+  "description": "An available target resource type for FIS experiments",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "description": "Resource type identifier",
+      "example": "aws:ec2:instance"
+    },
+    "description": {
+      "type": "string",
+      "description": "Resource type description",
+      "example": "EC2 Instance"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Resource type parameters",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

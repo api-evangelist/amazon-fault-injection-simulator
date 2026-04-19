@@ -1,0 +1,11 @@
+{
+  "resourceType": "aws:ec2:instance",
+  "resourceArns": [
+    "arn:aws:fis:us-east-1:123456789012:resource/EX123"
+  ],
+  "resourceTags": {},
+  "filters": [
+    {}
+  ],
+  "selectionMode": "ALL"
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-experiment-template-target-structure.json",
+  "description": "Target definition in an experiment template",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "description": "AWS resource type",
+      "example": "aws:ec2:instance"
+    },
+    "resourceArns": {
+      "type": "array",
+      "description": "Specific resource ARNs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resourceTags": {
+      "type": "object",
+      "description": "Tags to filter resources",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "filters": {
+      "type": "array",
+      "description": "Resource filters",
+      "items": {
+        "type": "object"
+      }
+    },
+    "selectionMode": {
+      "type": "string",
+      "description": "Selection mode",
+      "example": "ALL",
+      "enum": [
+        "ALL",
+        "COUNT(n)",
+        "PERCENT(n)"
+      ]
+    }
+  },
+  "name": "ExperimentTemplateTarget"
+}

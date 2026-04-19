@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-experiment-structure.json",
+  "description": "A fault injection experiment instance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Experiment ID",
+      "example": "EXP123"
+    },
+    "arn": {
+      "type": "string",
+      "description": "Experiment ARN",
+      "example": "arn:aws:fis:us-east-1:123456789012:experiment/EXP123"
+    },
+    "experimentTemplateId": {
+      "type": "string",
+      "description": "Source template ID",
+      "example": "EXT123"
+    },
+    "roleArn": {
+      "type": "string",
+      "description": "IAM role used"
+    },
+    "state": {
+      "$ref": "#/components/schemas/ExperimentState"
+    },
+    "targets": {
+      "type": "object",
+      "description": "Resolved targets",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "actions": {
+      "type": "object",
+      "description": "Experiment actions",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "stopConditions": {
+      "type": "array",
+      "description": "Stop conditions",
+      "items": {
+        "type": "object"
+      }
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "Experiment start time"
+    },
+    "endTime": {
+      "type": "datetime",
+      "description": "Experiment end time"
+    },
+    "tags": {
+      "type": "object",
+      "description": "Resource tags",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "Experiment"
+}

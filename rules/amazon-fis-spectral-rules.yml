@@ -1,0 +1,197 @@
+rules:
+  info-title-required:
+    description: API must have a title
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  info-title-aws-fis-prefix:
+    description: Title must start with AWS Fault Injection Simulator
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: ^AWS Fault Injection Simulator
+  info-description-required:
+    description: API must have a description
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+  info-version-required:
+    description: API must have a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  servers-required:
+    description: API must define servers
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  operation-operationid-required:
+    description: Operations must have operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+  operation-operationid-camelcase:
+    description: operationId must use camelCase
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  operation-summary-required:
+    description: Operations must have summary
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+  operation-summary-aws-fis-prefix:
+    description: Summaries must start with AWS Fault Injection Simulator
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: ^AWS Fault Injection Simulator
+  operation-description-required:
+    description: Operations must have description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  operation-tags-required:
+    description: Operations must have tags
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+  operation-microcks-extension:
+    description: Operations should have x-microcks-operation
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy
+  paths-kebab-case:
+    description: Path segments should use kebab-case
+    severity: warn
+    given: $.paths
+    then:
+      function: truthy
+  response-success-required:
+    description: Operations must have a success response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: truthy
+  response-description-required:
+    description: Responses must have descriptions
+    severity: error
+    given: $.paths[*][*].responses[*]
+    then:
+      field: description
+      function: truthy
+  response-error-400:
+    description: Mutating operations should document 400
+    severity: warn
+    given: $.paths[*][post,put,patch].responses
+    then:
+      field: '400'
+      function: truthy
+  response-error-404:
+    description: Operations on specific resources should document 404
+    severity: warn
+    given: $.paths[*][get,patch,delete].responses
+    then:
+      field: '404'
+      function: truthy
+  response-error-500:
+    description: Operations should document 500
+    severity: warn
+    given: $.paths[*][*].responses
+    then:
+      field: '500'
+      function: truthy
+  schema-description-required:
+    description: Component schemas must have descriptions
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+  schema-type-defined:
+    description: Schema properties should define type
+    severity: warn
+    given: $.components.schemas[*].properties[*]
+    then:
+      field: type
+      function: truthy
+  security-schemes-defined:
+    description: Security schemes must be defined
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  security-global-defined:
+    description: Global security must be defined
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+  path-parameters-described:
+    description: Path parameters should have descriptions
+    severity: warn
+    given: $.paths[*][*].parameters[*][?(@.in=="path")]
+    then:
+      field: description
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
+  tags-defined:
+    description: Global tags must be defined
+    severity: warn
+    given: $
+    then:
+      field: tags
+      function: truthy
+  tag-description-required:
+    description: Each tag must have a description
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+  client-token-in-create:
+    description: Create operations should include clientToken for idempotency
+    severity: info
+    given: $.paths[*][post].requestBody.content
+    then:
+      function: truthy

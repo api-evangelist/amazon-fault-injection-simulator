@@ -1,0 +1,5 @@
+{
+  "id": "SL123",
+  "arn": "arn:aws:fis:us-east-1:123456789012:safety-lever/SL123",
+  "state": "example-value"
+}

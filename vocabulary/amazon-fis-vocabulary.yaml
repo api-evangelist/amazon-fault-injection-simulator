@@ -1,0 +1,212 @@
+vocabulary: 1.0.0
+info:
+  provider: AWS Fault Injection Simulator
+  description: Taxonomy for AWS FIS chaos engineering service covering experiment templates, experiments, actions, safety levers, and target resource types.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: AWS FIS API
+    namespace: fis
+    version: '2020-12-01'
+    baseUrl: https://fis.{region}.amazonaws.com
+    status: active
+  resources:
+  - name: experiment-templates
+    description: Reusable templates defining fault injection scenarios
+    actions:
+    - create
+    - get
+    - list
+    - update
+    - delete
+  - name: experiments
+    description: Running instances of fault injection experiments
+    actions:
+    - start
+    - get
+    - list
+    - stop
+  - name: actions
+    description: Available fault injection action types from AWS
+    actions:
+    - get
+    - list
+  - name: target-resource-types
+    description: AWS resource types that can be targeted
+    actions:
+    - get
+    - list
+  - name: safety-levers
+    description: Safety mechanisms to control experiment execution
+    actions:
+    - get
+    - update
+  - name: target-account-configurations
+    description: Multi-account experiment targeting configurations
+    actions:
+    - create
+    - get
+    - list
+    - update
+    - delete
+  - name: tags
+    description: Resource tags for FIS resources
+    actions:
+    - list
+    - tag
+    - untag
+  actions:
+  - name: create
+    httpMethod: POST
+    pattern: write
+  - name: get
+    httpMethod: GET
+    pattern: read
+  - name: list
+    httpMethod: GET
+    pattern: read
+  - name: update
+    httpMethod: PATCH
+    pattern: write
+  - name: delete
+    httpMethod: DELETE
+    pattern: destructive
+  - name: start
+    httpMethod: POST
+    pattern: write
+  - name: stop
+    httpMethod: DELETE
+    pattern: destructive
+  schemas:
+    core:
+    - name: ExperimentTemplate
+      description: Fault injection scenario template
+      key_properties:
+      - id
+      - description
+      - targets
+      - actions
+      - stopConditions
+    - name: Experiment
+      description: Running experiment instance
+      key_properties:
+      - id
+      - experimentTemplateId
+      - state
+    - name: Action
+      description: FIS fault injection action
+      key_properties:
+      - id
+      - description
+      - targets
+    - name: SafetyLever
+      description: Safety control mechanism
+      key_properties:
+      - id
+      - arn
+      - state
+  enums:
+    experiment_statuses:
+    - pending
+    - initiating
+    - running
+    - completed
+    - stopping
+    - stopped
+    - failed
+    safety_lever_statuses:
+    - engaged
+    - disengaged
+    - engaging
+    - disengaging
+    selection_modes:
+    - ALL
+    - COUNT(n)
+    - PERCENT(n)
+  authentication:
+    scheme: AWS Signature Version 4
+    type: apiKey
+    headerName: Authorization
+capability:
+  workflows:
+  - name: AWS FIS Chaos Engineering
+    file: capabilities/amazon-fis-chaos-engineering.yaml
+    description: Full chaos engineering lifecycle
+    apis_combined:
+    - AWS FIS API
+    tool_count: 13
+    personas:
+    - Resilience Engineer
+    - SRE
+    - DevOps Engineer
+  personas:
+  - id: resilience-engineer
+    name: Resilience Engineer
+    description: Engineers designing and running chaos experiments to improve system reliability
+    workflows:
+    - amazon-fis-chaos-engineering
+  - id: sre
+    name: Site Reliability Engineer
+    description: SREs using FIS to validate service resilience targets
+    workflows:
+    - amazon-fis-chaos-engineering
+  - id: devops-engineer
+    name: DevOps Engineer
+    description: Engineers integrating FIS into CI/CD for automated resilience testing
+    workflows:
+    - amazon-fis-chaos-engineering
+  domains:
+  - name: Chaos Engineering
+    description: Deliberate fault injection to test system resilience
+  - name: Resilience Testing
+    description: Validating application behavior under failure conditions
+  - name: Observability
+    description: Monitoring system behavior during controlled experiments
+  namespaces:
+  - type: consumed
+    namespace: fis
+    source: AWS FIS API
+  - type: rest
+    namespace: fis-chaos-api
+    port: 8080
+  - type: mcp
+    namespace: fis-chaos-mcp
+    port: 9090
+  binds:
+  - AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY
+  - AWS_REGION
+crossReference:
+- resource: experiment-templates
+  operations:
+  - create-experiment-template
+  - get-experiment-template
+  - list-experiment-templates
+  - update-experiment-template
+  - delete-experiment-template
+  workflows:
+  - amazon-fis-chaos-engineering
+  personas:
+  - Resilience Engineer
+  - DevOps Engineer
+- resource: experiments
+  operations:
+  - start-experiment
+  - get-experiment
+  - list-experiments
+  - stop-experiment
+  workflows:
+  - amazon-fis-chaos-engineering
+  personas:
+  - Resilience Engineer
+  - SRE
+- resource: safety-levers
+  operations:
+  - get-safety-lever
+  - update-safety-lever-state
+  workflows:
+  - amazon-fis-chaos-engineering
+  personas:
+  - Resilience Engineer
+  - SRE

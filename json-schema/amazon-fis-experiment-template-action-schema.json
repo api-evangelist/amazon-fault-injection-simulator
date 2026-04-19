@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-schema/amazon-fis-experiment-template-action-schema.json",
+  "title": "ExperimentTemplateAction",
+  "description": "Action definition in an experiment template",
+  "type": "object",
+  "properties": {
+    "actionId": {
+      "type": "string",
+      "description": "FIS action ID",
+      "example": "aws:ec2:stop-instances"
+    },
+    "description": {
+      "type": "string",
+      "description": "Action description"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Action parameters",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "targets": {
+      "type": "object",
+      "description": "Target mappings",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "startAfter": {
+      "type": "array",
+      "description": "Actions that must complete first",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

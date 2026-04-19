@@ -1,0 +1,4 @@
+{
+  "source": "aws:cloudwatch:alarm",
+  "value": "arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm"
+}

@@ -1,0 +1,9 @@
+{
+  "actionId": "aws:ec2:stop-instances",
+  "description": "Example fault injection scenario",
+  "parameters": {},
+  "targets": {},
+  "startAfter": [
+    "example-value"
+  ]
+}

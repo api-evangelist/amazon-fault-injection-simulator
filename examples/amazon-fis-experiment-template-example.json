@@ -1,0 +1,14 @@
+{
+  "id": "EXT123",
+  "arn": "arn:aws:fis:us-east-1:123456789012:experiment-template/EXT123",
+  "description": "Test EC2 instance failure",
+  "targets": {},
+  "actions": {},
+  "stopConditions": [
+    "example-value"
+  ],
+  "creationTime": "2026-04-19T12:00:00Z",
+  "lastUpdateTime": "example-value",
+  "roleArn": "arn:aws:fis:us-east-1:123456789012:resource/EX123",
+  "tags": {}
+}

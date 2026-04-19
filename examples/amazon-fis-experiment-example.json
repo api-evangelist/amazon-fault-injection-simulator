@@ -1,0 +1,15 @@
+{
+  "id": "EXP123",
+  "arn": "arn:aws:fis:us-east-1:123456789012:experiment/EXP123",
+  "experimentTemplateId": "EXT123",
+  "roleArn": "arn:aws:fis:us-east-1:123456789012:resource/EX123",
+  "state": "example-value",
+  "targets": {},
+  "actions": {},
+  "stopConditions": [
+    {}
+  ],
+  "startTime": "example-value",
+  "endTime": "example-value",
+  "tags": {}
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-experiment-template-stop-condition-structure.json",
+  "description": "Stop condition for an experiment",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Stop condition source",
+      "example": "aws:cloudwatch:alarm"
+    },
+    "value": {
+      "type": "string",
+      "description": "CloudWatch alarm ARN or none",
+      "example": "arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm"
+    }
+  },
+  "name": "ExperimentTemplateStopCondition"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "aws:ec2:stop-instances",
+  "arn": "arn:aws:fis:us-east-1:123456789012:resource/EX123",
+  "description": "Stop EC2 instances",
+  "parameters": {},
+  "targets": {},
+  "tags": {}
+}

@@ -1,0 +1,5 @@
+{
+  "resourceType": "aws:ec2:instance",
+  "description": "EC2 Instance",
+  "parameters": {}
+}

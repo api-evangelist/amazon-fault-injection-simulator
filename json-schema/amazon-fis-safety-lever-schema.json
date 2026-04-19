@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-schema/amazon-fis-safety-lever-schema.json",
+  "title": "SafetyLever",
+  "description": "A safety mechanism that can stop or prevent FIS experiments",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Safety lever ID",
+      "example": "SL123"
+    },
+    "arn": {
+      "type": "string",
+      "description": "Safety lever ARN",
+      "example": "arn:aws:fis:us-east-1:123456789012:safety-lever/SL123"
+    },
+    "state": {
+      "$ref": "#/components/schemas/SafetyLeverState"
+    }
+  }
+}

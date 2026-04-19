@@ -1,0 +1,118 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "fis": "https://aws.amazon.com/fis/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ExperimentTemplateTarget": "fis:ExperimentTemplateTarget",
+    "resourceType": {
+      "@id": "fis:resourceType",
+      "@type": "xsd:string"
+    },
+    "resourceArns": {
+      "@id": "fis:resourceArns",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "resourceTags": {
+      "@id": "fis:resourceTags",
+      "@type": "@id"
+    },
+    "filters": {
+      "@id": "fis:filters",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "selectionMode": {
+      "@id": "fis:selectionMode",
+      "@type": "xsd:string"
+    },
+    "TargetResourceType": "fis:TargetResourceType",
+    "description": "schema:description",
+    "parameters": {
+      "@id": "fis:parameters",
+      "@type": "@id"
+    },
+    "ExperimentTemplateStopCondition": "fis:ExperimentTemplateStopCondition",
+    "source": {
+      "@id": "fis:source",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "fis:value",
+      "@type": "xsd:string"
+    },
+    "ExperimentState": "fis:ExperimentState",
+    "status": {
+      "@id": "fis:status",
+      "@type": "xsd:string"
+    },
+    "reason": {
+      "@id": "fis:reason",
+      "@type": "xsd:string"
+    },
+    "SafetyLeverState": "fis:SafetyLeverState",
+    "SafetyLever": "fis:SafetyLever",
+    "id": {
+      "@id": "fis:id",
+      "@type": "xsd:string"
+    },
+    "arn": {
+      "@id": "fis:arn",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "fis:state",
+      "@type": "xsd:string"
+    },
+    "ExperimentTemplate": "fis:ExperimentTemplate",
+    "targets": {
+      "@id": "fis:targets",
+      "@type": "@id"
+    },
+    "actions": {
+      "@id": "fis:actions",
+      "@type": "@id"
+    },
+    "stopConditions": {
+      "@id": "fis:stopConditions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "creationTime": "schema:dateCreated",
+    "lastUpdateTime": "schema:dateModified",
+    "roleArn": {
+      "@id": "fis:roleArn",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "fis:tags",
+      "@type": "@id"
+    },
+    "Action": "fis:Action",
+    "ExperimentTemplateAction": "fis:ExperimentTemplateAction",
+    "actionId": {
+      "@id": "fis:actionId",
+      "@type": "xsd:string"
+    },
+    "startAfter": {
+      "@id": "fis:startAfter",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Experiment": "fis:Experiment",
+    "experimentTemplateId": {
+      "@id": "fis:experimentTemplateId",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "fis:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "fis:endTime",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

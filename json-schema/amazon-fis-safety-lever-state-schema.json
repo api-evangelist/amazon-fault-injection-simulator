@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-schema/amazon-fis-safety-lever-state-schema.json",
+  "title": "SafetyLeverState",
+  "description": "State of a safety lever",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Safety lever status",
+      "example": "engaged",
+      "enum": [
+        "engaged",
+        "disengaged",
+        "engaging",
+        "disengaging"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Status reason",
+      "example": "No active experiments"
+    }
+  }
+}

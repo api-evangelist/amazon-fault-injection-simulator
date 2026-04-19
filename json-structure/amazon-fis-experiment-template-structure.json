@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/json-structure/amazon-fis-experiment-template-structure.json",
+  "description": "An experiment template defining fault injection targets, actions, and stop conditions",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Template ID",
+      "example": "EXT123"
+    },
+    "arn": {
+      "type": "string",
+      "description": "Template ARN",
+      "example": "arn:aws:fis:us-east-1:123456789012:experiment-template/EXT123"
+    },
+    "description": {
+      "type": "string",
+      "description": "Template description",
+      "example": "Test EC2 instance failure"
+    },
+    "targets": {
+      "type": "object",
+      "description": "Target definitions",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/ExperimentTemplateTarget"
+      }
+    },
+    "actions": {
+      "type": "object",
+      "description": "Action definitions",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/ExperimentTemplateAction"
+      }
+    },
+    "stopConditions": {
+      "type": "array",
+      "description": "Stop conditions",
+      "items": {
+        "$ref": "#/components/schemas/ExperimentTemplateStopCondition"
+      }
+    },
+    "creationTime": {
+      "type": "datetime",
+      "description": "Template creation time",
+      "example": "2026-04-19T12:00:00Z"
+    },
+    "lastUpdateTime": {
+      "type": "datetime",
+      "description": "Last update time"
+    },
+    "roleArn": {
+      "type": "string",
+      "description": "IAM role ARN for experiment execution"
+    },
+    "tags": {
+      "type": "object",
+      "description": "Resource tags",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "ExperimentTemplate"
+}
