@@ -1,0 +1,13 @@
+{
+  "repo": "amazon-fault-injection-simulator",
+  "feeds": [
+    {
+      "source": "https://aws.amazon.com/blogs/devops/tag/aws-fault-injection-simulator/",
+      "feed_url": "https://aws.amazon.com/blogs/devops/tag/aws-fault-injection-simulator/feed/",
+      "saved": 5,
+      "title": "AWS Fault Injection Simulator \u2013 AWS DevOps & Developer Productivity Blog"
+    }
+  ],
+  "post_count": 5,
+  "fetched": "2026-05-03T23:21:23Z"
+}
