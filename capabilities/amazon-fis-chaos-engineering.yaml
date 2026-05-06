@@ -1,8 +1,8 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: AWS FIS Chaos Engineering
-  description: Workflow capability for executing chaos engineering experiments using AWS FIS. Enables resilience engineers and SREs to design, execute, and monitor fault injection experiments across 
-    AWS infrastructure.
+  description: Workflow capability for executing chaos engineering experiments using AWS FIS. Enables resilience engineers
+    and SREs to design, execute, and monitor fault injection experiments across AWS infrastructure.
   tags:
   - AWS FIS
   - Chaos Engineering
@@ -10,7 +10,7 @@ info:
   - SRE
   - DevOps
   created: '2026-04-19'
-  modified: '2026-04-19'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -19,8 +19,136 @@ binds:
     AWS_REGION: AWS_REGION
 capability:
   consumes:
-  - import: fis
-    location: ./shared/fis.yaml
+  - type: http
+    namespace: fis
+    baseUri: https://fis.{region}.amazonaws.com
+    description: AWS Fault Injection Simulator API
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_ACCESS_KEY_ID}}'
+      placement: header
+    resources:
+    - name: experiment-templates
+      path: /experimentTemplates
+      description: Experiment template management
+      operations:
+      - name: list-experiment-templates
+        method: GET
+        description: List experiment templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-experiment-template
+        method: POST
+        description: Create experiment template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-experiment-template
+        method: GET
+        description: Get experiment template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-experiment-template
+        method: PATCH
+        description: Update experiment template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-experiment-template
+        method: DELETE
+        description: Delete experiment template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: experiments
+      path: /experiments
+      description: Experiment execution
+      operations:
+      - name: list-experiments
+        method: GET
+        description: List experiments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: start-experiment
+        method: POST
+        description: Start experiment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-experiment
+        method: GET
+        description: Get experiment status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: stop-experiment
+        method: DELETE
+        description: Stop experiment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: actions
+      path: /actions
+      description: Available FIS actions
+      operations:
+      - name: list-actions
+        method: GET
+        description: List available actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-action
+        method: GET
+        description: Get action details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: safety-levers
+      path: /safetyLevers
+      description: Safety lever management
+      operations:
+      - name: get-safety-lever
+        method: GET
+        description: Get safety lever status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-safety-lever-state
+        method: PATCH
+        description: Update safety lever state
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
   - type: rest
     port: 8080
