@@ -95,7 +95,7 @@ common:
   url: capabilities/amazon-fis-chaos-engineering.yaml
 - type: Vocabulary
   url: vocabulary/amazon-fis-vocabulary.yaml
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/amazon-fis-context.jsonld
 - type: Features
   data:
