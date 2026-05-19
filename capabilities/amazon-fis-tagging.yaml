@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Fault Injection Simulator API — Tagging
+  description: 'AWS Fault Injection Simulator API — Tagging. 3 operations. Lead operation: AWS Fault Injection Simulator List
+    Tags for Resource. Self-contained Naftiko capability covering one Amazon Fault Injection Simulator business surface.'
+  tags:
+  - Amazon Fault Injection Simulator
+  - Tagging
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY: AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-fis-tagging
+    baseUri: https://fis.{region}.amazonaws.com
+    description: AWS Fault Injection Simulator API — Tagging business capability. Self-contained, no shared references.
+    resources:
+    - name: tags-resourceArn
+      path: /tags/{resourceArn}
+      operations:
+      - name: listtagsforresource
+        method: GET
+        description: AWS Fault Injection Simulator List Tags for Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: Resource ARN
+          required: true
+      - name: tagresource
+        method: POST
+        description: AWS Fault Injection Simulator Tag a Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: Resource ARN
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: untagresource
+        method: DELETE
+        description: AWS Fault Injection Simulator Untag a Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: Resource ARN
+          required: true
+        - name: tagKeys
+          in: query
+          type: array
+          description: Tag keys to remove
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-fis-tagging-rest
+    port: 8080
+    description: REST adapter for AWS Fault Injection Simulator API — Tagging. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/tags/{resourcearn}
+      name: tags-resourcearn
+      description: REST surface for tags-resourceArn.
+      operations:
+      - method: GET
+        name: listtagsforresource
+        description: AWS Fault Injection Simulator List Tags for Resource
+        call: amazon-fis-tagging.listtagsforresource
+        with:
+          resourceArn: rest.resourceArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: tagresource
+        description: AWS Fault Injection Simulator Tag a Resource
+        call: amazon-fis-tagging.tagresource
+        with:
+          resourceArn: rest.resourceArn
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: untagresource
+        description: AWS Fault Injection Simulator Untag a Resource
+        call: amazon-fis-tagging.untagresource
+        with:
+          resourceArn: rest.resourceArn
+          tagKeys: rest.tagKeys
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-fis-tagging-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Fault Injection Simulator API — Tagging. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: aws-fault-injection-simulator-list
+      description: AWS Fault Injection Simulator List Tags for Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-fis-tagging.listtagsforresource
+      with:
+        resourceArn: tools.resourceArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-fault-injection-simulator-tag
+      description: AWS Fault Injection Simulator Tag a Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-fis-tagging.tagresource
+      with:
+        resourceArn: tools.resourceArn
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-fault-injection-simulator-untag
+      description: AWS Fault Injection Simulator Untag a Resource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-fis-tagging.untagresource
+      with:
+        resourceArn: tools.resourceArn
+        tagKeys: tools.tagKeys
+      outputParameters:
+      - type: object
+        mapping: $.

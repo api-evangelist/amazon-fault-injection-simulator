@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Fault Injection Simulator API — Safety Levers
+  description: 'AWS Fault Injection Simulator API — Safety Levers. 2 operations. Lead operation: AWS Fault Injection Simulator
+    Get Safety Lever. Self-contained Naftiko capability covering one Amazon Fault Injection Simulator business surface.'
+  tags:
+  - Amazon Fault Injection Simulator
+  - Safety Levers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY: AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-fis-safety-levers
+    baseUri: https://fis.{region}.amazonaws.com
+    description: AWS Fault Injection Simulator API — Safety Levers business capability. Self-contained, no shared references.
+    resources:
+    - name: safetyLevers-id
+      path: /safetyLevers/{id}
+      operations:
+      - name: getsafetylever
+        method: GET
+        description: AWS Fault Injection Simulator Get Safety Lever
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Safety lever ID
+          required: true
+      - name: updatesafetyleverstate
+        method: PATCH
+        description: AWS Fault Injection Simulator Update Safety Lever State
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Safety lever ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-fis-safety-levers-rest
+    port: 8080
+    description: REST adapter for AWS Fault Injection Simulator API — Safety Levers. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/safetylevers/{id}
+      name: safetylevers-id
+      description: REST surface for safetyLevers-id.
+      operations:
+      - method: GET
+        name: getsafetylever
+        description: AWS Fault Injection Simulator Get Safety Lever
+        call: amazon-fis-safety-levers.getsafetylever
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatesafetyleverstate
+        description: AWS Fault Injection Simulator Update Safety Lever State
+        call: amazon-fis-safety-levers.updatesafetyleverstate
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-fis-safety-levers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Fault Injection Simulator API — Safety Levers. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: aws-fault-injection-simulator-get
+      description: AWS Fault Injection Simulator Get Safety Lever
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-fis-safety-levers.getsafetylever
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-fault-injection-simulator-update
+      description: AWS Fault Injection Simulator Update Safety Lever State
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-fis-safety-levers.updatesafetyleverstate
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

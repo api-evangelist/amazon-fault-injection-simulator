@@ -1,0 +1,131 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Fault Injection Simulator API — Target Resource Types
+  description: 'AWS Fault Injection Simulator API — Target Resource Types. 2 operations. Lead operation: AWS Fault Injection
+    Simulator List Target Resource Types. Self-contained Naftiko capability covering one Amazon Fault Injection Simulator
+    business surface.'
+  tags:
+  - Amazon Fault Injection Simulator
+  - Target Resource Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY: AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-fis-target-resource-types
+    baseUri: https://fis.{region}.amazonaws.com
+    description: AWS Fault Injection Simulator API — Target Resource Types business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: targetResourceTypes
+      path: /targetResourceTypes
+      operations:
+      - name: listtargetresourcetypes
+        method: GET
+        description: AWS Fault Injection Simulator List Target Resource Types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxResults
+          in: query
+          type: integer
+          description: Maximum results
+        - name: nextToken
+          in: query
+          type: string
+          description: Pagination token
+    - name: targetResourceTypes-resourceType
+      path: /targetResourceTypes/{resourceType}
+      operations:
+      - name: gettargetresourcetype
+        method: GET
+        description: AWS Fault Injection Simulator Get Target Resource Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceType
+          in: path
+          type: string
+          description: Resource type
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_FAULT_INJECTION_SIMULATOR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-fis-target-resource-types-rest
+    port: 8080
+    description: REST adapter for AWS Fault Injection Simulator API — Target Resource Types. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/targetresourcetypes
+      name: targetresourcetypes
+      description: REST surface for targetResourceTypes.
+      operations:
+      - method: GET
+        name: listtargetresourcetypes
+        description: AWS Fault Injection Simulator List Target Resource Types
+        call: amazon-fis-target-resource-types.listtargetresourcetypes
+        with:
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/targetresourcetypes/{resourcetype}
+      name: targetresourcetypes-resourcetype
+      description: REST surface for targetResourceTypes-resourceType.
+      operations:
+      - method: GET
+        name: gettargetresourcetype
+        description: AWS Fault Injection Simulator Get Target Resource Type
+        call: amazon-fis-target-resource-types.gettargetresourcetype
+        with:
+          resourceType: rest.resourceType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-fis-target-resource-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Fault Injection Simulator API — Target Resource Types. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: aws-fault-injection-simulator-list
+      description: AWS Fault Injection Simulator List Target Resource Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-fis-target-resource-types.listtargetresourcetypes
+      with:
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-fault-injection-simulator-get
+      description: AWS Fault Injection Simulator Get Target Resource Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-fis-target-resource-types.gettargetresourcetype
+      with:
+        resourceType: tools.resourceType
+      outputParameters:
+      - type: object
+        mapping: $.
