@@ -1,0 +1,69 @@
+arazzo: 1.0.1
+info:
+  title: AWS FIS Discover Target Resource Type
+  summary: List the supported target resource types and fetch the full detail of the first one returned.
+  description: >-
+    A target discovery flow for AWS Fault Injection Simulator. Experiment
+    template targets are defined by resource type, so before authoring a target
+    you need to know which resource types FIS supports and what parameters each
+    one accepts. The workflow lists the supported target resource types, captures
+    the resource type identifier of the first entry in the page, and reads back
+    its full definition including its parameters. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: fisApi
+  url: ../openapi/amazon-fis-openapi.yml
+  type: openapi
+workflows:
+- workflowId: discover-target-resource-type
+  summary: List target resource types and fetch the first one's full definition.
+  description: >-
+    Lists the supported target resource types, takes the first resource type
+    from the page, and retrieves its full definition via getTargetResourceType.
+  inputs:
+    type: object
+    properties:
+      maxResults:
+        type: integer
+        description: Maximum number of resource types to return in the listing page.
+      nextToken:
+        type: string
+        description: Pagination token for fetching a later page of resource types.
+  steps:
+  - stepId: listResourceTypes
+    description: List the target resource types supported by FIS.
+    operationId: listTargetResourceTypes
+    parameters:
+    - name: maxResults
+      in: query
+      value: $inputs.maxResults
+    - name: nextToken
+      in: query
+      value: $inputs.nextToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstResourceType: $response.body#/targetResourceTypes/0/resourceType
+      nextToken: $response.body#/nextToken
+  - stepId: getResourceType
+    description: >-
+      Retrieve the full definition of the first target resource type returned by
+      the listing, including its parameters.
+    operationId: getTargetResourceType
+    parameters:
+    - name: resourceType
+      in: path
+      value: $steps.listResourceTypes.outputs.firstResourceType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      resourceType: $response.body#/targetResourceType/resourceType
+      description: $response.body#/targetResourceType/description
+      parameters: $response.body#/targetResourceType/parameters
+  outputs:
+    resourceType: $steps.getResourceType.outputs.resourceType
+    description: $steps.getResourceType.outputs.description
+    parameters: $steps.getResourceType.outputs.parameters
+    nextToken: $steps.listResourceTypes.outputs.nextToken

@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: AWS FIS Update Template Then Run
+  summary: Fetch an existing experiment template, update its description, and start an experiment from the revised template.
+  description: >-
+    A template revision and run flow for AWS Fault Injection Simulator. The
+    workflow reads an existing experiment template to confirm it exists, applies
+    an update to the template (for example revising its description), and then
+    starts a fault injection experiment from the revised template. This is the
+    common pattern for tweaking a saved template just before a chaos run. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: fisApi
+  url: ../openapi/amazon-fis-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-template-then-run
+  summary: Get a template, update it, then start an experiment from the revised template.
+  description: >-
+    Fetches an experiment template by id, applies an update to it, then starts
+    an experiment from the updated template and reads back the experiment's
+    initial state.
+  inputs:
+    type: object
+    required:
+    - templateId
+    - description
+    properties:
+      templateId:
+        type: string
+        description: The id of the experiment template to update and run.
+      description:
+        type: string
+        description: The revised description to apply to the experiment template.
+      roleArn:
+        type: string
+        description: IAM role ARN that FIS assumes to run the experiment.
+      clientToken:
+        type: string
+        description: Idempotency token for the start request.
+      tags:
+        type: object
+        description: Tags to apply to the started experiment.
+  steps:
+  - stepId: getTemplate
+    description: Read the experiment template to confirm it exists before updating it.
+    operationId: getExperimentTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.templateId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      templateId: $response.body#/experimentTemplate/id
+  - stepId: updateTemplate
+    description: >-
+      Apply an update to the experiment template, revising its description. The
+      updateExperimentTemplate operation is the PATCH on
+      /experimentTemplates/{id}.
+    operationId: updateExperimentTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $steps.getTemplate.outputs.templateId
+    requestBody:
+      contentType: application/json
+      payload:
+        description: $inputs.description
+        roleArn: $inputs.roleArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedTemplateId: $response.body#/experimentTemplate/id
+  - stepId: startExperiment
+    description: Start a fault injection experiment from the updated template.
+    operationId: startExperiment
+    requestBody:
+      contentType: application/json
+      payload:
+        clientToken: $inputs.clientToken
+        experimentTemplateId: $steps.updateTemplate.outputs.updatedTemplateId
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      experimentId: $response.body#/experiment/id
+      status: $response.body#/experiment/state/status
+  outputs:
+    templateId: $steps.updateTemplate.outputs.updatedTemplateId
+    experimentId: $steps.startExperiment.outputs.experimentId
+    status: $steps.startExperiment.outputs.status

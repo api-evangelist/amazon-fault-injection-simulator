@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: AWS FIS Find and Stop Running Experiment
+  summary: List experiments for a template, and if the first one is still active, stop it and confirm the stop.
+  description: >-
+    A safety flow for AWS Fault Injection Simulator. The workflow lists the
+    experiments started from a given experiment template, inspects the first
+    experiment in the page, and branches on its state. When the experiment is
+    still pending, initiating, or running it issues a stop request and reads the
+    experiment back to confirm the stop took effect; when the experiment is
+    already in a terminal state it ends without acting. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: fisApi
+  url: ../openapi/amazon-fis-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-and-stop-running-experiment
+  summary: List experiments for a template and stop the first one if it is still active.
+  description: >-
+    Lists experiments filtered by template id, and branches on the first
+    experiment's state, stopping it and confirming the stop when it is still
+    active, otherwise ending.
+  inputs:
+    type: object
+    properties:
+      experimentTemplateId:
+        type: string
+        description: Filter the experiment listing to those started from this template.
+      maxResults:
+        type: integer
+        description: Maximum number of experiments to return in the listing page.
+      nextToken:
+        type: string
+        description: Pagination token for fetching a later page of experiments.
+  steps:
+  - stepId: listExperiments
+    description: >-
+      List experiments, optionally filtered to those started from the supplied
+      template id.
+    operationId: listExperiments
+    parameters:
+    - name: maxResults
+      in: query
+      value: $inputs.maxResults
+    - name: nextToken
+      in: query
+      value: $inputs.nextToken
+    - name: experimentTemplateId
+      in: query
+      value: $inputs.experimentTemplateId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstExperimentId: $response.body#/experiments/0/id
+      firstStatus: $response.body#/experiments/0/state/status
+    onSuccess:
+    - name: active
+      type: goto
+      stepId: stopExperiment
+      criteria:
+      - context: $response.body
+        condition: $.experiments[0].state.status == 'pending' || $.experiments[0].state.status == 'initiating' || $.experiments[0].state.status == 'running'
+        type: jsonpath
+    - name: alreadyTerminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.experiments[0].state.status == 'completed' || $.experiments[0].state.status == 'stopped' || $.experiments[0].state.status == 'failed'
+        type: jsonpath
+  - stepId: stopExperiment
+    description: >-
+      Stop the active experiment. The stopExperiment operation is the DELETE on
+      /experiments/{id} and transitions the experiment into the stopping state.
+    operationId: stopExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listExperiments.outputs.firstExperimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stopStatus: $response.body#/experiment/state/status
+  - stepId: confirmStop
+    description: Read the experiment back to confirm it has entered the stopping or stopped state.
+    operationId: getExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listExperiments.outputs.firstExperimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/experiment/state/status
+      reason: $response.body#/experiment/state/reason
+  outputs:
+    experimentId: $steps.listExperiments.outputs.firstExperimentId
+    finalStatus: $steps.confirmStop.outputs.status
+    finalReason: $steps.confirmStop.outputs.reason

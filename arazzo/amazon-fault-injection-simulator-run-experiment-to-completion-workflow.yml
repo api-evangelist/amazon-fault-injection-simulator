@@ -1,0 +1,129 @@
+arazzo: 1.0.1
+info:
+  title: AWS FIS Run Experiment to Completion
+  summary: Create an experiment template, start an experiment from it, and poll until the experiment reaches a terminal state.
+  description: >-
+    The canonical AWS Fault Injection Simulator chaos engineering flow. The
+    workflow creates an experiment template that defines targets, actions, and
+    stop conditions, starts a fault injection experiment from that template, and
+    then polls the experiment until it settles into a terminal state. A poll loop
+    re-reads the experiment and branches on its state status, looping back while
+    the experiment is still pending, initiating, or running, and ending once it
+    completes, stops, or fails. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: fisApi
+  url: ../openapi/amazon-fis-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-experiment-to-completion
+  summary: Create a template, start an experiment, and poll until it reaches a terminal state.
+  description: >-
+    Creates an experiment template, starts an experiment from the returned
+    template id, then polls getExperiment, looping while the experiment is
+    pending, initiating, or running and ending when it is completed, stopped, or
+    failed.
+  inputs:
+    type: object
+    required:
+    - description
+    - stopConditions
+    - targets
+    - actions
+    properties:
+      clientToken:
+        type: string
+        description: Idempotency token for the create and start requests.
+      description:
+        type: string
+        description: Human readable description for the experiment template.
+      stopConditions:
+        type: array
+        description: Stop conditions that halt the experiment (e.g. a CloudWatch alarm).
+        items:
+          type: object
+      targets:
+        type: object
+        description: Map of named targets defining resource type, tags, and selection mode.
+      actions:
+        type: object
+        description: Map of named actions referencing an actionId and the targets it applies to.
+      roleArn:
+        type: string
+        description: IAM role ARN that FIS assumes to run the experiment.
+      tags:
+        type: object
+        description: Tags to apply to the experiment template and started experiment.
+  steps:
+  - stepId: createTemplate
+    description: >-
+      Create an experiment template defining the targets, actions, and stop
+      conditions for the fault injection experiment.
+    operationId: createExperimentTemplate
+    requestBody:
+      contentType: application/json
+      payload:
+        clientToken: $inputs.clientToken
+        description: $inputs.description
+        stopConditions: $inputs.stopConditions
+        targets: $inputs.targets
+        actions: $inputs.actions
+        roleArn: $inputs.roleArn
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      experimentTemplateId: $response.body#/experimentTemplate/id
+  - stepId: startExperiment
+    description: >-
+      Start a fault injection experiment from the newly created experiment
+      template.
+    operationId: startExperiment
+    requestBody:
+      contentType: application/json
+      payload:
+        clientToken: $inputs.clientToken
+        experimentTemplateId: $steps.createTemplate.outputs.experimentTemplateId
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      experimentId: $response.body#/experiment/id
+      initialStatus: $response.body#/experiment/state/status
+  - stepId: pollExperiment
+    description: >-
+      Read the current state of the running experiment. Branches back to itself
+      while the experiment is still pending, initiating, or running, and ends
+      when the experiment reaches a terminal state (completed, stopped, or
+      failed).
+    operationId: getExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.startExperiment.outputs.experimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/experiment/state/status
+      reason: $response.body#/experiment/state/reason
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollExperiment
+      criteria:
+      - context: $response.body
+        condition: $.experiment.state.status == 'pending' || $.experiment.state.status == 'initiating' || $.experiment.state.status == 'running'
+        type: jsonpath
+    - name: terminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.experiment.state.status == 'completed' || $.experiment.state.status == 'stopped' || $.experiment.state.status == 'failed'
+        type: jsonpath
+  outputs:
+    experimentTemplateId: $steps.createTemplate.outputs.experimentTemplateId
+    experimentId: $steps.startExperiment.outputs.experimentId
+    finalStatus: $steps.pollExperiment.outputs.status
+    finalReason: $steps.pollExperiment.outputs.reason

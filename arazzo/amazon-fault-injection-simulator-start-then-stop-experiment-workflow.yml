@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: AWS FIS Start Then Stop Experiment
+  summary: Start an experiment from an existing template, confirm it is running, stop it, and poll until it is fully stopped.
+  description: >-
+    A controlled abort flow for AWS Fault Injection Simulator. The workflow
+    starts an experiment from a pre-existing experiment template, reads the
+    experiment back to confirm it has begun, issues a stop request, and then
+    polls the experiment until it leaves the stopping state and reaches a
+    terminal state. The poll loop branches on the experiment state status,
+    looping back while the experiment is still stopping and ending once it is
+    stopped, completed, or failed. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: fisApi
+  url: ../openapi/amazon-fis-openapi.yml
+  type: openapi
+workflows:
+- workflowId: start-then-stop-experiment
+  summary: Start an experiment from a template, then stop it and poll until terminal.
+  description: >-
+    Starts an experiment from a supplied experiment template id, verifies it is
+    running, stops the experiment, then polls getExperiment until the state
+    leaves stopping.
+  inputs:
+    type: object
+    required:
+    - experimentTemplateId
+    properties:
+      experimentTemplateId:
+        type: string
+        description: The experiment template id to start the experiment from.
+      clientToken:
+        type: string
+        description: Idempotency token for the start request.
+      tags:
+        type: object
+        description: Tags to apply to the started experiment.
+  steps:
+  - stepId: startExperiment
+    description: Start a fault injection experiment from the supplied template id.
+    operationId: startExperiment
+    requestBody:
+      contentType: application/json
+      payload:
+        clientToken: $inputs.clientToken
+        experimentTemplateId: $inputs.experimentTemplateId
+        tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      experimentId: $response.body#/experiment/id
+      startStatus: $response.body#/experiment/state/status
+  - stepId: confirmRunning
+    description: >-
+      Read the experiment back to confirm it has begun before requesting a stop.
+    operationId: getExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.startExperiment.outputs.experimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/experiment/state/status
+  - stepId: stopExperiment
+    description: >-
+      Stop the running experiment. The stopExperiment operation is the DELETE on
+      /experiments/{id} and transitions the experiment into the stopping state.
+    operationId: stopExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.startExperiment.outputs.experimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stopStatus: $response.body#/experiment/state/status
+  - stepId: pollStopped
+    description: >-
+      Poll the experiment until it leaves the stopping state. Loops back while
+      the status is still stopping and ends once the experiment is stopped,
+      completed, or failed.
+    operationId: getExperiment
+    parameters:
+    - name: id
+      in: path
+      value: $steps.startExperiment.outputs.experimentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/experiment/state/status
+      reason: $response.body#/experiment/state/reason
+    onSuccess:
+    - name: stillStopping
+      type: goto
+      stepId: pollStopped
+      criteria:
+      - context: $response.body
+        condition: $.experiment.state.status == 'stopping'
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.experiment.state.status == 'stopped' || $.experiment.state.status == 'completed' || $.experiment.state.status == 'failed'
+        type: jsonpath
+  outputs:
+    experimentId: $steps.startExperiment.outputs.experimentId
+    finalStatus: $steps.pollStopped.outputs.status
+    finalReason: $steps.pollStopped.outputs.reason

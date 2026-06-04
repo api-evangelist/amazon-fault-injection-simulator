@@ -68,6 +68,30 @@ apis:
   - type: NaftikoCapability
     url: capabilities/amazon-fis-target-resource-types.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/amazon-fault-injection-simulator-discover-action-detail-workflow.yml
+    name: AWS FIS Discover Action Detail
+    summary: List the available FIS actions and fetch the full detail of the first action returned.
+  - url: arazzo/amazon-fault-injection-simulator-discover-target-resource-type-workflow.yml
+    name: AWS FIS Discover Target Resource Type
+    summary: List the supported target resource types and fetch the full detail of the first one returned.
+  - url: arazzo/amazon-fault-injection-simulator-find-and-stop-running-experiment-workflow.yml
+    name: AWS FIS Find and Stop Running Experiment
+    summary: List experiments for a template, and if the first one is still active, stop it and confirm the stop.
+  - url: arazzo/amazon-fault-injection-simulator-list-then-get-template-workflow.yml
+    name: AWS FIS List Then Get Experiment Template
+    summary: List experiment templates and fetch the full definition of the first one returned.
+  - url: arazzo/amazon-fault-injection-simulator-run-experiment-to-completion-workflow.yml
+    name: AWS FIS Run Experiment to Completion
+    summary: Create an experiment template, start an experiment from it, and poll until the experiment reaches a terminal state.
+  - url: arazzo/amazon-fault-injection-simulator-start-then-stop-experiment-workflow.yml
+    name: AWS FIS Start Then Stop Experiment
+    summary: Start an experiment from an existing template, confirm it is running, stop it, and poll until it is fully stopped.
+  - url: arazzo/amazon-fault-injection-simulator-update-template-then-run-workflow.yml
+    name: AWS FIS Update Template Then Run
+    summary: Fetch an existing experiment template, update its description, and start an experiment from the revised template.
 - type: Portal
   url: https://aws.amazon.com/fis/
 - type: Website
