@@ -1,0 +1,448 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiment Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Experiment Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists your experiment templates."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Create Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an experiment template defining targets, actions, and stop conditions for fault injection experiments."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "EXT123",
+                "type": "path",
+                "description": "Experiment template ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Update Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Delete Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified experiment template."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Experiments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experiments",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              },
+              {
+                "name": "experimentTemplateId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template ID"
+              }
+            ]
+          },
+          "docs": "Lists your experiments."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Start Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fis.{region}.amazonaws.com/experiments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts running an experiment from the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experiments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "EXP123",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified experiment."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Stop Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fis.{region}.amazonaws.com/experiments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Stops the specified experiment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/actions",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists the available FIS actions."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/actions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "aws:ec2:stop-instances",
+                "type": "path",
+                "description": "Action ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified FIS action."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Target Resource Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Target Resource Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/targetResourceTypes",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists the target resource types."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Target Resource Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/targetResourceTypes/:resourceType",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "aws:ec2:instance",
+                "type": "path",
+                "description": "Resource type"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified resource type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Safety Levers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Safety Lever",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/safetyLevers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "SL123",
+                "type": "path",
+                "description": "Safety lever ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified safety lever."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Update Safety Lever State",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://fis.{region}.amazonaws.com/safetyLevers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Safety lever ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the state of the safety lever."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tagging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Tags for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "Resource ARN"
+              }
+            ]
+          },
+          "docs": "Lists the tags for the specified resource."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Tag a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fis.{region}.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "Resource ARN"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies tags to the specified resource."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Untag a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fis.{region}.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "",
+                "type": "path",
+                "description": "Resource ARN"
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query",
+                "description": "Tag keys to remove"
+              }
+            ]
+          },
+          "docs": "Removes tags from the specified resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
