@@ -5,7 +5,7 @@ description: >-
   allows you to improve an application's performance, observability, and resiliency by identifying and fixing weaknesses
   through controlled chaos engineering experiments.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AWS
   - Chaos Engineering
