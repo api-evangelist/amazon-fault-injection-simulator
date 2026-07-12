@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amazon-fis-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: aws_signature_v4
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: AWS Signature Version 4 authentication
+  sources:
+  - openapi/amazon-fis-openapi.yml

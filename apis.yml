@@ -58,6 +58,14 @@ apis:
       - type: APIReference
         url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
 common:
+  - type: TrustCenter
+    url: security/amazon-fault-injection-simulator-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-fault-injection-simulator-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-fault-injection-simulator-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-fault-injection-simulator-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-fault-injection-simulator/overview
   - type: Arazzo
