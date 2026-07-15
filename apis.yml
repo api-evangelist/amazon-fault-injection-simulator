@@ -58,6 +58,8 @@ apis:
       - type: APIReference
         url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-fault-injection-simulator-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-fault-injection-simulator-trust-center.yml
   - type: VulnerabilityDisclosure
