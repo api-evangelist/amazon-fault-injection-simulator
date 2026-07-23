@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: AWS Fault Injection Simulator Actions Target Resource Types API
+  description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. This API enables creating experiment templates, starting and stopping experiments, managing safety levers, and configuring multi-account targets for chaos engineering.
+  version: '2020-12-01'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/contact-us/
+  termsOfService: https://aws.amazon.com/service-terms/
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://fis.{region}.amazonaws.com
+  description: AWS FIS Regional Endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS Region
+security:
+- aws_signature_v4: []
+tags:
+- name: Target Resource Types
+  description: Discover available target resource types
+paths:
+  /targetResourceTypes:
+    get:
+      operationId: listTargetResourceTypes
+      summary: AWS Fault Injection Simulator List Target Resource Types
+      description: Lists the target resource types.
+      tags:
+      - Target Resource Types
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum results
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        description: Pagination token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of resource types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTargetResourceTypesResponse'
+              examples:
+                ListTargetResourceTypes200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    targetResourceTypes:
+                    - resourceType: aws:ec2:instance
+                      description: EC2 Instance
+                    - resourceType: aws:rds:cluster
+                      description: RDS Cluster
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /targetResourceTypes/{resourceType}:
+    get:
+      operationId: getTargetResourceType
+      summary: AWS Fault Injection Simulator Get Target Resource Type
+      description: Gets information about the specified resource type.
+      tags:
+      - Target Resource Types
+      parameters:
+      - name: resourceType
+        in: path
+        required: true
+        description: Resource type
+        schema:
+          type: string
+        example: aws:ec2:instance
+      responses:
+        '200':
+          description: Resource type details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetResourceTypeResponse'
+              examples:
+                GetTargetResourceType200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    targetResourceType:
+                      resourceType: aws:ec2:instance
+                      description: EC2 Instance
+                      parameters: {}
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TargetResourceTypeResponse:
+      type: object
+      description: Response containing target resource type
+      properties:
+        targetResourceType:
+          $ref: '#/components/schemas/TargetResourceType'
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
+    TargetResourceType:
+      type: object
+      description: An available target resource type for FIS experiments
+      properties:
+        resourceType:
+          type: string
+          description: Resource type identifier
+          example: aws:ec2:instance
+        description:
+          type: string
+          description: Resource type description
+          example: EC2 Instance
+        parameters:
+          type: object
+          description: Resource type parameters
+          additionalProperties:
+            type: object
+    ListTargetResourceTypesResponse:
+      type: object
+      description: List of target resource types
+      properties:
+        targetResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetResourceType'
+        nextToken:
+          type: string
+          description: Pagination token
+  securitySchemes:
+    aws_signature_v4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
+externalDocs:
+  description: AWS FIS API Reference
+  url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html

@@ -1,0 +1,208 @@
+openapi: 3.1.0
+info:
+  title: AWS Fault Injection Simulator Actions Tagging API
+  description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. This API enables creating experiment templates, starting and stopping experiments, managing safety levers, and configuring multi-account targets for chaos engineering.
+  version: '2020-12-01'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/contact-us/
+  termsOfService: https://aws.amazon.com/service-terms/
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://fis.{region}.amazonaws.com
+  description: AWS FIS Regional Endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS Region
+security:
+- aws_signature_v4: []
+tags:
+- name: Tagging
+  description: Manage tags on FIS resources
+paths:
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: AWS Fault Injection Simulator List Tags for Resource
+      description: Lists the tags for the specified resource.
+      tags:
+      - Tagging
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: Resource ARN
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tags returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTagsResponse'
+              examples:
+                ListTagsForResource200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      Environment: test
+                      Team: platform
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: tagResource
+      summary: AWS Fault Injection Simulator Tag a Resource
+      description: Applies tags to the specified resource.
+      tags:
+      - Tagging
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: Resource ARN
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagResourceRequest'
+            examples:
+              TagResourceRequestExample:
+                summary: Default request
+                x-microcks-default: true
+                value:
+                  tags:
+                    Environment: test
+                    Team: platform
+      responses:
+        '200':
+          description: Tags applied
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                TagResource200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value: {}
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: untagResource
+      summary: AWS Fault Injection Simulator Untag a Resource
+      description: Removes tags from the specified resource.
+      tags:
+      - Tagging
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: Resource ARN
+        schema:
+          type: string
+      - name: tagKeys
+        in: query
+        description: Tag keys to remove
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Tags removed
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                UntagResource200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value: {}
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TagResourceRequest:
+      type: object
+      required:
+      - tags
+      description: Request to tag a resource
+      properties:
+        tags:
+          type: object
+          description: Tags to apply
+          additionalProperties:
+            type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
+    ListTagsResponse:
+      type: object
+      description: Response containing resource tags
+      properties:
+        tags:
+          type: object
+          description: Resource tags
+          additionalProperties:
+            type: string
+  securitySchemes:
+    aws_signature_v4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
+externalDocs:
+  description: AWS FIS API Reference
+  url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html

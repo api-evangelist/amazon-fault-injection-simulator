@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: AWS Fault Injection Simulator Actions Experiment Templates API
+  description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. This API enables creating experiment templates, starting and stopping experiments, managing safety levers, and configuring multi-account targets for chaos engineering.
+  version: '2020-12-01'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/contact-us/
+  termsOfService: https://aws.amazon.com/service-terms/
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://fis.{region}.amazonaws.com
+  description: AWS FIS Regional Endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS Region
+security:
+- aws_signature_v4: []
+tags:
+- name: Experiment Templates
+  description: Create and manage fault injection experiment templates
+paths:
+  /experimentTemplates:
+    post:
+      operationId: createExperimentTemplate
+      summary: AWS Fault Injection Simulator Create Experiment Template
+      description: Creates an experiment template defining targets, actions, and stop conditions for fault injection experiments.
+      tags:
+      - Experiment Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExperimentTemplateRequest'
+            examples:
+              CreateExperimentTemplateRequestExample:
+                summary: Default createExperimentTemplate request
+                x-microcks-default: true
+                value:
+                  clientToken: token-abc123
+                  description: Test EC2 instance failure
+                  stopConditions:
+                  - source: aws:cloudwatch:alarm
+                    value: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
+                  targets:
+                    myTargets:
+                      resourceType: aws:ec2:instance
+                      resourceTags:
+                        Environment: test
+                      selectionMode: ALL
+                  actions:
+                    stopInstances:
+                      actionId: aws:ec2:stop-instances
+                      targets:
+                        Instances: myTargets
+      responses:
+        '200':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperimentTemplateResponse'
+              examples:
+                CreateExperimentTemplate200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    experimentTemplate:
+                      id: EXT123
+                      description: Test EC2 instance failure
+                      status:
+                        status: active
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listExperimentTemplates
+      summary: AWS Fault Injection Simulator List Experiment Templates
+      description: Lists your experiment templates.
+      tags:
+      - Experiment Templates
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum results
+        schema:
+          type: integer
+        example: 20
+      - name: nextToken
+        in: query
+        description: Pagination token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListExperimentTemplatesResponse'
+              examples:
+                ListExperimentTemplates200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    experimentTemplates:
+                    - id: EXT123
+                      description: Test EC2 failure
+                      creationTime: '2026-04-19T12:00:00Z'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /experimentTemplates/{id}:
+    get:
+      operationId: getExperimentTemplate
+      summary: AWS Fault Injection Simulator Get Experiment Template
+      description: Gets information about the specified experiment template.
+      tags:
+      - Experiment Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Experiment template ID
+        schema:
+          type: string
+        example: EXT123
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperimentTemplateResponse'
+              examples:
+                GetExperimentTemplate200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    experimentTemplate:
+                      id: EXT123
+                      description: Test EC2 failure
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateExperimentTemplate
+      summary: AWS Fault Injection Simulator Update Experiment Template
+      description: Updates the specified experiment template.
+      tags:
+      - Experiment Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Template ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExperimentTemplateRequest'
+            examples:
+              UpdateExperimentTemplateRequestExample:
+                summary: Default request
+                x-microcks-default: true
+                value:
+                  description: Updated description
+      responses:
+        '200':
+          description: Template updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperimentTemplateResponse'
+              examples:
+                UpdateExperimentTemplate200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    experimentTemplate:
+                      id: EXT123
+                      description: Updated description
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteExperimentTemplate
+      summary: AWS Fault Injection Simulator Delete Experiment Template
+      description: Deletes the specified experiment template.
+      tags:
+      - Experiment Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Template ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Template deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperimentTemplateResponse'
+              examples:
+                DeleteExperimentTemplate200Example:
+                  summary: Default response
+                  x-microcks-default: true
+                  value:
+                    experimentTemplate:
+                      id: EXT123
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExperimentTemplateAction:
+      type: object
+      description: Action definition in an experiment template
+      properties:
+        actionId:
+          type: string
+          description: FIS action ID
+          example: aws:ec2:stop-instances
+        description:
+          type: string
+          description: Action description
+        parameters:
+          type: object
+          description: Action parameters
+          additionalProperties:
+            type: string
+        targets:
+          type: object
+          description: Target mappings
+          additionalProperties:
+            type: string
+        startAfter:
+          type: array
+          description: Actions that must complete first
+          items:
+            type: string
+    ExperimentTemplateTarget:
+      type: object
+      description: Target definition in an experiment template
+      properties:
+        resourceType:
+          type: string
+          description: AWS resource type
+          example: aws:ec2:instance
+        resourceArns:
+          type: array
+          description: Specific resource ARNs
+          items:
+            type: string
+        resourceTags:
+          type: object
+          description: Tags to filter resources
+          additionalProperties:
+            type: string
+        filters:
+          type: array
+          description: Resource filters
+          items:
+            type: object
+        selectionMode:
+          type: string
+          description: Selection mode
+          example: ALL
+          enum:
+          - ALL
+          - COUNT(n)
+          - PERCENT(n)
+    CreateExperimentTemplateRequest:
+      type: object
+      required:
+      - clientToken
+      - stopConditions
+      - targets
+      - actions
+      - roleArn
+      description: Request body for CreateExperimentTemplate
+      properties:
+        clientToken:
+          type: string
+          description: Idempotency token
+          example: token-abc123
+        description:
+          type: string
+          description: Template description
+        stopConditions:
+          type: array
+          description: Stop conditions
+          items:
+            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
+        targets:
+          type: object
+          description: Targets
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateTarget'
+        actions:
+          type: object
+          description: Actions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateAction'
+        roleArn:
+          type: string
+          description: IAM role ARN
+        tags:
+          type: object
+          description: Tags
+          additionalProperties:
+            type: string
+    ExperimentTemplate:
+      type: object
+      description: An experiment template defining fault injection targets, actions, and stop conditions
+      properties:
+        id:
+          type: string
+          description: Template ID
+          example: EXT123
+        arn:
+          type: string
+          description: Template ARN
+          example: arn:aws:fis:us-east-1:123456789012:experiment-template/EXT123
+        description:
+          type: string
+          description: Template description
+          example: Test EC2 instance failure
+        targets:
+          type: object
+          description: Target definitions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateTarget'
+        actions:
+          type: object
+          description: Action definitions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateAction'
+        stopConditions:
+          type: array
+          description: Stop conditions
+          items:
+            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
+        creationTime:
+          type: string
+          format: date-time
+          description: Template creation time
+          example: '2026-04-19T12:00:00Z'
+        lastUpdateTime:
+          type: string
+          format: date-time
+          description: Last update time
+        roleArn:
+          type: string
+          description: IAM role ARN for experiment execution
+        tags:
+          type: object
+          description: Resource tags
+          additionalProperties:
+            type: string
+    UpdateExperimentTemplateRequest:
+      type: object
+      description: Request body for UpdateExperimentTemplate
+      properties:
+        description:
+          type: string
+          description: Updated description
+        stopConditions:
+          type: array
+          description: Updated stop conditions
+          items:
+            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
+        targets:
+          type: object
+          description: Updated targets
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateTarget'
+        actions:
+          type: object
+          description: Updated actions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateAction'
+        roleArn:
+          type: string
+          description: Updated IAM role ARN
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
+    ExperimentTemplateResponse:
+      type: object
+      description: Response containing experiment template
+      properties:
+        experimentTemplate:
+          $ref: '#/components/schemas/ExperimentTemplate'
+    ExperimentTemplateStopCondition:
+      type: object
+      description: Stop condition for an experiment
+      properties:
+        source:
+          type: string
+          description: Stop condition source
+          example: aws:cloudwatch:alarm
+        value:
+          type: string
+          description: CloudWatch alarm ARN or none
+          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
+    ListExperimentTemplatesResponse:
+      type: object
+      description: List of experiment templates
+      properties:
+        experimentTemplates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExperimentTemplate'
+        nextToken:
+          type: string
+          description: Pagination token
+  securitySchemes:
+    aws_signature_v4:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: AWS Signature Version 4 authentication
+externalDocs:
+  description: AWS FIS API Reference
+  url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
