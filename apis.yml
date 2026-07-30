@@ -5,7 +5,20 @@ description: >-
   allows you to improve an application's performance, observability, and resiliency by identifying and fixing weaknesses
   through controlled chaos engineering experiments.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-fault-injection-simulator.png
 tags:
   - AWS
   - Chaos Engineering
@@ -17,46 +30,224 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: amazon-fault-injection-simulator:aws-fis-api
-    name: AWS Fault Injection Simulator API
-    description: >-
-      The AWS Fault Injection Simulator API provides programmatic access to create and manage experiment templates,
-      experiments, and actions for conducting chaos engineering experiments on AWS workloads.
-    humanURL: https://aws.amazon.com/fis/
-    baseURL: https://fis.amazonaws.com
-    tags:
-      - Chaos Engineering
-      - Fault Injection
-      - Resilience Testing
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-      - type: OpenAPI
-        url: openapi/amazon-fis-openapi.yml
-      - type: JSONSchema
-        url: json-schema/amazon-fis-experiment-template-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-fis-experiment-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-fis-action-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-fis-safety-lever-schema.json
-      - type: JSONStructure
-        url: json-structure/amazon-fis-experiment-template-structure.json
-      - type: JSONStructure
-        url: json-structure/amazon-fis-experiment-structure.json
-      - type: Examples
-        url: examples/amazon-fis-experiment-template-example.json
-      - type: Examples
-        url: examples/amazon-fis-experiment-example.json
-      - type: GettingStarted
-        url: https://aws.amazon.com/fis/getting-started/
-      - type: Pricing
-        url: https://aws.amazon.com/fis/pricing/
-      - type: FAQ
-        url: https://aws.amazon.com/fis/faqs/
-      - type: APIReference
-        url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-actions-api
+  name: Amazon Fault Injection Simulator Actions API
+  description: Discover available FIS fault injection actions
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-actions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: >-
+    amazon-fault-injection-simulator:amazon-fault-injection-simulator-experiment-templates-api
+  name: Amazon Fault Injection Simulator Experiment Templates API
+  description: Create and manage fault injection experiment templates
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Experiment Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-experiment-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-experiments-api
+  name: Amazon Fault Injection Simulator Experiments API
+  description: Start, stop, and monitor fault injection experiments
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Experiments
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-experiments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-safety-levers-api
+  name: Amazon Fault Injection Simulator Safety Levers API
+  description: Manage safety levers for experiment control
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Safety Levers
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-safety-levers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-tagging-api
+  name: Amazon Fault Injection Simulator Tagging API
+  description: Manage tags on FIS resources
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Tagging
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-tagging-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+- aid: >-
+    amazon-fault-injection-simulator:amazon-fault-injection-simulator-target-resource-types-api
+  name: Amazon Fault Injection Simulator Target Resource Types API
+  description: Discover available target resource types
+  humanURL: https://aws.amazon.com/fis/
+  baseURL: https://fis.amazonaws.com
+  tags:
+  - Target Resource Types
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-fault-injection-simulator-target-resource-types-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-template-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-action-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fis-safety-lever-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-template-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-fis-experiment-structure.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-template-example.json
+  - type: Examples
+    url: examples/amazon-fis-experiment-example.json
+  - type: GettingStarted
+    url: https://aws.amazon.com/fis/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/fis/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/fis/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-fault-injection-simulator-agentic-access.yml
