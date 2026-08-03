@@ -1,0 +1,24 @@
+{
+  "provider": "amazon-fault-injection-simulator",
+  "sources": [
+    "amazon-fault-injection-simulator-actions-api-openapi.yml",
+    "amazon-fault-injection-simulator-experiment-templates-api-openapi.yml",
+    "amazon-fault-injection-simulator-experiments-api-openapi.yml",
+    "amazon-fault-injection-simulator-safety-levers-api-openapi.yml",
+    "amazon-fault-injection-simulator-tagging-api-openapi.yml",
+    "amazon-fault-injection-simulator-target-resource-types-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-fault-injection-simulator-actions-api-openapi.yml",
+    "amazon-fault-injection-simulator-experiment-templates-api-openapi.yml",
+    "amazon-fault-injection-simulator-experiments-api-openapi.yml",
+    "amazon-fault-injection-simulator-safety-levers-api-openapi.yml",
+    "amazon-fault-injection-simulator-tagging-api-openapi.yml",
+    "amazon-fault-injection-simulator-target-resource-types-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
