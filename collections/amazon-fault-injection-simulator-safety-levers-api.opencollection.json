@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator Actions Safety Levers API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Safety Levers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Safety Lever",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/safetyLevers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "SL123",
+                "type": "path",
+                "description": "Safety lever ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified safety lever."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Update Safety Lever State",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://fis.{region}.amazonaws.com/safetyLevers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Safety lever ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the state of the safety lever."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

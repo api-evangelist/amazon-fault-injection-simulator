@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator Actions API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/actions",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists the available FIS actions."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/actions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "aws:ec2:stop-instances",
+                "type": "path",
+                "description": "Action ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified FIS action."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

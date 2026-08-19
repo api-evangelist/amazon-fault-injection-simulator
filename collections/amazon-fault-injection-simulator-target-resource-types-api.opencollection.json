@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator Actions Target Resource Types API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Target Resource Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Target Resource Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/targetResourceTypes",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists the target resource types."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Target Resource Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/targetResourceTypes/:resourceType",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "aws:ec2:instance",
+                "type": "path",
+                "description": "Resource type"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified resource type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator Actions Experiment Templates API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiment Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Experiment Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              }
+            ]
+          },
+          "docs": "Lists your experiment templates."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Create Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an experiment template defining targets, actions, and stop conditions for fault injection experiments."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "EXT123",
+                "type": "path",
+                "description": "Experiment template ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Update Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Delete Experiment Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fis.{region}.amazonaws.com/experimentTemplates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified experiment template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

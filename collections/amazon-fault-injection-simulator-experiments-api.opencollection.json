@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Fault Injection Simulator Actions Experiments API",
+    "version": "2020-12-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator List Experiments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experiments",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token"
+              },
+              {
+                "name": "experimentTemplateId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template ID"
+              }
+            ]
+          },
+          "docs": "Lists your experiments."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Start Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://fis.{region}.amazonaws.com/experiments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts running an experiment from the specified experiment template."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Get Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fis.{region}.amazonaws.com/experiments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "EXP123",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Gets information about the specified experiment."
+        },
+        {
+          "info": {
+            "name": "AWS Fault Injection Simulator Stop Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://fis.{region}.amazonaws.com/experiments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Stops the specified experiment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
