@@ -12,8 +12,8 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: fisApi
-  url: ../openapi/amazon-fis-openapi.yml
+- name: experimentTemplatesApi
+  url: ../openapi/amazon-fault-injection-simulator-experiment-templates-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: list-then-get-template

@@ -14,8 +14,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: fisApi
-  url: ../openapi/amazon-fis-openapi.yml
+- name: experimentsApi
+  url: ../openapi/amazon-fault-injection-simulator-experiments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: start-then-stop-experiment

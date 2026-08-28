@@ -12,8 +12,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: fisApi
-  url: ../openapi/amazon-fis-openapi.yml
+- name: experimentTemplatesApi
+  url: ../openapi/amazon-fault-injection-simulator-experiment-templates-api-openapi.yml
+  type: openapi
+- name: experimentsApi
+  url: ../openapi/amazon-fault-injection-simulator-experiments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: update-template-then-run

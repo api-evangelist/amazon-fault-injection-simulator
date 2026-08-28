@@ -13,8 +13,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: fisApi
-  url: ../openapi/amazon-fis-openapi.yml
+- name: targetResourceTypesApi
+  url: ../openapi/amazon-fault-injection-simulator-target-resource-types-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: discover-target-resource-type
