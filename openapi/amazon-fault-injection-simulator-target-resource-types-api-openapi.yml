@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Fault Injection Simulator Actions Target Resource Types API
   description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. This API enables creating experiment templates, starting and stopping experiments, managing safety levers, and configuring multi-account targets for chaos engineering.
@@ -120,20 +120,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TargetResourceTypeResponse:
-      type: object
-      description: Response containing target resource type
-      properties:
-        targetResourceType:
-          $ref: '#/components/schemas/TargetResourceType'
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
     TargetResourceType:
       type: object
       description: An available target resource type for FIS experiments
@@ -151,6 +137,20 @@ components:
           description: Resource type parameters
           additionalProperties:
             type: object
+    TargetResourceTypeResponse:
+      type: object
+      description: Response containing target resource type
+      properties:
+        targetResourceType:
+          $ref: '#/components/schemas/TargetResourceType'
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
     ListTargetResourceTypesResponse:
       type: object
       description: List of target resource types

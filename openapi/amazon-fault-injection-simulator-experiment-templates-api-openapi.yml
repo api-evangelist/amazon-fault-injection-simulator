@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Fault Injection Simulator Actions Experiment Templates API
   description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. This API enables creating experiment templates, starting and stopping experiments, managing safety levers, and configuring multi-account targets for chaos engineering.
@@ -293,103 +293,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExperimentTemplateAction:
+    ExperimentTemplateStopCondition:
       type: object
-      description: Action definition in an experiment template
+      description: Stop condition for an experiment
       properties:
-        actionId:
+        source:
           type: string
-          description: FIS action ID
-          example: aws:ec2:stop-instances
-        description:
+          description: Stop condition source
+          example: aws:cloudwatch:alarm
+        value:
           type: string
-          description: Action description
-        parameters:
-          type: object
-          description: Action parameters
-          additionalProperties:
-            type: string
-        targets:
-          type: object
-          description: Target mappings
-          additionalProperties:
-            type: string
-        startAfter:
-          type: array
-          description: Actions that must complete first
-          items:
-            type: string
-    ExperimentTemplateTarget:
-      type: object
-      description: Target definition in an experiment template
-      properties:
-        resourceType:
-          type: string
-          description: AWS resource type
-          example: aws:ec2:instance
-        resourceArns:
-          type: array
-          description: Specific resource ARNs
-          items:
-            type: string
-        resourceTags:
-          type: object
-          description: Tags to filter resources
-          additionalProperties:
-            type: string
-        filters:
-          type: array
-          description: Resource filters
-          items:
-            type: object
-        selectionMode:
-          type: string
-          description: Selection mode
-          example: ALL
-          enum:
-          - ALL
-          - COUNT(n)
-          - PERCENT(n)
-    CreateExperimentTemplateRequest:
-      type: object
-      required:
-      - clientToken
-      - stopConditions
-      - targets
-      - actions
-      - roleArn
-      description: Request body for CreateExperimentTemplate
-      properties:
-        clientToken:
-          type: string
-          description: Idempotency token
-          example: token-abc123
-        description:
-          type: string
-          description: Template description
-        stopConditions:
-          type: array
-          description: Stop conditions
-          items:
-            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
-        targets:
-          type: object
-          description: Targets
-          additionalProperties:
-            $ref: '#/components/schemas/ExperimentTemplateTarget'
-        actions:
-          type: object
-          description: Actions
-          additionalProperties:
-            $ref: '#/components/schemas/ExperimentTemplateAction'
-        roleArn:
-          type: string
-          description: IAM role ARN
-        tags:
-          type: object
-          description: Tags
-          additionalProperties:
-            type: string
+          description: CloudWatch alarm ARN or none
+          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
     ExperimentTemplate:
       type: object
       description: An experiment template defining fault injection targets, actions, and stop conditions
@@ -477,18 +392,6 @@ components:
       properties:
         experimentTemplate:
           $ref: '#/components/schemas/ExperimentTemplate'
-    ExperimentTemplateStopCondition:
-      type: object
-      description: Stop condition for an experiment
-      properties:
-        source:
-          type: string
-          description: Stop condition source
-          example: aws:cloudwatch:alarm
-        value:
-          type: string
-          description: CloudWatch alarm ARN or none
-          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
     ListExperimentTemplatesResponse:
       type: object
       description: List of experiment templates
@@ -500,6 +403,103 @@ components:
         nextToken:
           type: string
           description: Pagination token
+    ExperimentTemplateTarget:
+      type: object
+      description: Target definition in an experiment template
+      properties:
+        resourceType:
+          type: string
+          description: AWS resource type
+          example: aws:ec2:instance
+        resourceArns:
+          type: array
+          description: Specific resource ARNs
+          items:
+            type: string
+        resourceTags:
+          type: object
+          description: Tags to filter resources
+          additionalProperties:
+            type: string
+        filters:
+          type: array
+          description: Resource filters
+          items:
+            type: object
+        selectionMode:
+          type: string
+          description: Selection mode
+          example: ALL
+          enum:
+          - ALL
+          - COUNT(n)
+          - PERCENT(n)
+    CreateExperimentTemplateRequest:
+      type: object
+      required:
+      - clientToken
+      - stopConditions
+      - targets
+      - actions
+      - roleArn
+      description: Request body for CreateExperimentTemplate
+      properties:
+        clientToken:
+          type: string
+          description: Idempotency token
+          example: token-abc123
+        description:
+          type: string
+          description: Template description
+        stopConditions:
+          type: array
+          description: Stop conditions
+          items:
+            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
+        targets:
+          type: object
+          description: Targets
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateTarget'
+        actions:
+          type: object
+          description: Actions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateAction'
+        roleArn:
+          type: string
+          description: IAM role ARN
+        tags:
+          type: object
+          description: Tags
+          additionalProperties:
+            type: string
+    ExperimentTemplateAction:
+      type: object
+      description: Action definition in an experiment template
+      properties:
+        actionId:
+          type: string
+          description: FIS action ID
+          example: aws:ec2:stop-instances
+        description:
+          type: string
+          description: Action description
+        parameters:
+          type: object
+          description: Action parameters
+          additionalProperties:
+            type: string
+        targets:
+          type: object
+          description: Target mappings
+          additionalProperties:
+            type: string
+        startAfter:
+          type: array
+          description: Actions that must complete first
+          items:
+            type: string
   securitySchemes:
     aws_signature_v4:
       type: apiKey
