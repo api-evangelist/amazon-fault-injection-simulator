@@ -1,12 +1,7 @@
 {
   "provider": "amazon-fault-injection-simulator",
   "sources": [
-    "amazon-fault-injection-simulator-actions-api-openapi.yml",
-    "amazon-fault-injection-simulator-experiment-templates-api-openapi.yml",
-    "amazon-fault-injection-simulator-experiments-api-openapi.yml",
-    "amazon-fault-injection-simulator-safety-levers-api-openapi.yml",
-    "amazon-fault-injection-simulator-tagging-api-openapi.yml",
-    "amazon-fault-injection-simulator-target-resource-types-api-openapi.yml"
+    "_ae-authored/amazon-fis-openapi.yml"
   ],
   "outputs": [
     "amazon-fault-injection-simulator-actions-api-openapi.yml",
@@ -20,7 +15,16 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-fis-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-fault-injection-simulator-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-fault-injection-simulator-experiment-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-fault-injection-simulator-experiments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-fault-injection-simulator-safety-levers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-fault-injection-simulator-tagging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-fault-injection-simulator-target-resource-types-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
