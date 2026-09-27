@@ -123,6 +123,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
     Action:
       type: object
       description: An available FIS fault injection action
@@ -164,14 +172,6 @@ components:
         nextToken:
           type: string
           description: Pagination token
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
     ActionResponse:
       type: object
       description: Response containing action details

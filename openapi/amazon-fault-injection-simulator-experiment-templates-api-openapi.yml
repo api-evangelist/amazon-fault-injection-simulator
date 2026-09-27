@@ -293,18 +293,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExperimentTemplateStopCondition:
-      type: object
-      description: Stop condition for an experiment
-      properties:
-        source:
-          type: string
-          description: Stop condition source
-          example: aws:cloudwatch:alarm
-        value:
-          type: string
-          description: CloudWatch alarm ARN or none
-          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
     UpdateExperimentTemplateRequest:
       type: object
       description: Request body for UpdateExperimentTemplate
@@ -330,6 +318,40 @@ components:
         roleArn:
           type: string
           description: Updated IAM role ARN
+    ExperimentTemplateAction:
+      type: object
+      description: Action definition in an experiment template
+      properties:
+        actionId:
+          type: string
+          description: FIS action ID
+          example: aws:ec2:stop-instances
+        description:
+          type: string
+          description: Action description
+        parameters:
+          type: object
+          description: Action parameters
+          additionalProperties:
+            type: string
+        targets:
+          type: object
+          description: Target mappings
+          additionalProperties:
+            type: string
+        startAfter:
+          type: array
+          description: Actions that must complete first
+          items:
+            type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
     CreateExperimentTemplateRequest:
       type: object
       required:
@@ -370,40 +392,6 @@ components:
           description: Tags
           additionalProperties:
             type: string
-    ExperimentTemplateAction:
-      type: object
-      description: Action definition in an experiment template
-      properties:
-        actionId:
-          type: string
-          description: FIS action ID
-          example: aws:ec2:stop-instances
-        description:
-          type: string
-          description: Action description
-        parameters:
-          type: object
-          description: Action parameters
-          additionalProperties:
-            type: string
-        targets:
-          type: object
-          description: Target mappings
-          additionalProperties:
-            type: string
-        startAfter:
-          type: array
-          description: Actions that must complete first
-          items:
-            type: string
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
     ExperimentTemplate:
       type: object
       description: An experiment template defining fault injection targets, actions, and stop conditions
@@ -483,6 +471,24 @@ components:
           - ALL
           - COUNT(n)
           - PERCENT(n)
+    ExperimentTemplateResponse:
+      type: object
+      description: Response containing experiment template
+      properties:
+        experimentTemplate:
+          $ref: '#/components/schemas/ExperimentTemplate'
+    ExperimentTemplateStopCondition:
+      type: object
+      description: Stop condition for an experiment
+      properties:
+        source:
+          type: string
+          description: Stop condition source
+          example: aws:cloudwatch:alarm
+        value:
+          type: string
+          description: CloudWatch alarm ARN or none
+          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
     ListExperimentTemplatesResponse:
       type: object
       description: List of experiment templates
@@ -494,12 +500,6 @@ components:
         nextToken:
           type: string
           description: Pagination token
-    ExperimentTemplateResponse:
-      type: object
-      description: Response containing experiment template
-      properties:
-        experimentTemplate:
-          $ref: '#/components/schemas/ExperimentTemplate'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

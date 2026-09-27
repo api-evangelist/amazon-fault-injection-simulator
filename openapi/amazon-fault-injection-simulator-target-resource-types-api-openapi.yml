@@ -120,17 +120,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ListTargetResourceTypesResponse:
+    ErrorResponse:
       type: object
-      description: List of target resource types
+      description: Error response from the FIS API
       properties:
-        targetResourceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TargetResourceType'
-        nextToken:
+        message:
           type: string
-          description: Pagination token
+          description: Error message
+          example: The specified resource does not exist.
     TargetResourceType:
       type: object
       description: An available target resource type for FIS experiments
@@ -148,20 +145,23 @@ components:
           description: Resource type parameters
           additionalProperties:
             type: object
+    ListTargetResourceTypesResponse:
+      type: object
+      description: List of target resource types
+      properties:
+        targetResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetResourceType'
+        nextToken:
+          type: string
+          description: Pagination token
     TargetResourceTypeResponse:
       type: object
       description: Response containing target resource type
       properties:
         targetResourceType:
           $ref: '#/components/schemas/TargetResourceType'
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
   securitySchemes:
     aws_signature_v4:
       type: apiKey

@@ -230,12 +230,67 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExperimentResponse:
+    StartExperimentRequest:
       type: object
-      description: Response containing experiment
+      required:
+      - clientToken
+      - experimentTemplateId
+      description: Request body for StartExperiment
       properties:
-        experiment:
-          $ref: '#/components/schemas/Experiment'
+        clientToken:
+          type: string
+          description: Idempotency token
+        experimentTemplateId:
+          type: string
+          description: Template ID to start
+          example: EXT123
+        experimentOptions:
+          type: object
+          description: Experiment options
+        tags:
+          type: object
+          description: Tags
+          additionalProperties:
+            type: string
+    ExperimentState:
+      type: object
+      description: Current state of an experiment
+      properties:
+        status:
+          type: string
+          description: Experiment status
+          example: running
+          enum:
+          - pending
+          - initiating
+          - running
+          - completed
+          - stopping
+          - stopped
+          - failed
+        reason:
+          type: string
+          description: Status reason
+          example: Experiment running normally
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
+    ListExperimentsResponse:
+      type: object
+      description: List of experiments
+      properties:
+        experiments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Experiment'
+        nextToken:
+          type: string
+          description: Pagination token
     Experiment:
       type: object
       description: A fault injection experiment instance
@@ -285,67 +340,12 @@ components:
           description: Resource tags
           additionalProperties:
             type: string
-    ErrorResponse:
+    ExperimentResponse:
       type: object
-      description: Error response from the FIS API
+      description: Response containing experiment
       properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
-    ExperimentState:
-      type: object
-      description: Current state of an experiment
-      properties:
-        status:
-          type: string
-          description: Experiment status
-          example: running
-          enum:
-          - pending
-          - initiating
-          - running
-          - completed
-          - stopping
-          - stopped
-          - failed
-        reason:
-          type: string
-          description: Status reason
-          example: Experiment running normally
-    ListExperimentsResponse:
-      type: object
-      description: List of experiments
-      properties:
-        experiments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Experiment'
-        nextToken:
-          type: string
-          description: Pagination token
-    StartExperimentRequest:
-      type: object
-      required:
-      - clientToken
-      - experimentTemplateId
-      description: Request body for StartExperiment
-      properties:
-        clientToken:
-          type: string
-          description: Idempotency token
-        experimentTemplateId:
-          type: string
-          description: Template ID to start
-          example: EXT123
-        experimentOptions:
-          type: object
-          description: Experiment options
-        tags:
-          type: object
-          description: Tags
-          additionalProperties:
-            type: string
+        experiment:
+          $ref: '#/components/schemas/Experiment'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

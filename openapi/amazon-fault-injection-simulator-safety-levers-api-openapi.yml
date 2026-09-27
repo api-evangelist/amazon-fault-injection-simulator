@@ -162,6 +162,12 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
+    SafetyLeverResponse:
+      type: object
+      description: Response containing safety lever
+      properties:
+        safetyLever:
+          $ref: '#/components/schemas/SafetyLever'
     UpdateSafetyLeverStateRequest:
       type: object
       required:
@@ -184,12 +190,6 @@ components:
           example: arn:aws:fis:us-east-1:123456789012:safety-lever/SL123
         state:
           $ref: '#/components/schemas/SafetyLeverState'
-    SafetyLeverResponse:
-      type: object
-      description: Response containing safety lever
-      properties:
-        safetyLever:
-          $ref: '#/components/schemas/SafetyLever'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

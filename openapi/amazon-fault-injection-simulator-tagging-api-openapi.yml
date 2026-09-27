@@ -169,6 +169,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
+    ListTagsResponse:
+      type: object
+      description: Response containing resource tags
+      properties:
+        tags:
+          type: object
+          description: Resource tags
+          additionalProperties:
+            type: string
     TagResourceRequest:
       type: object
       required:
@@ -180,23 +197,6 @@ components:
           description: Tags to apply
           additionalProperties:
             type: string
-    ListTagsResponse:
-      type: object
-      description: Response containing resource tags
-      properties:
-        tags:
-          type: object
-          description: Resource tags
-          additionalProperties:
-            type: string
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
   securitySchemes:
     aws_signature_v4:
       type: apiKey
