@@ -230,56 +230,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StartExperimentRequest:
-      type: object
-      required:
-      - clientToken
-      - experimentTemplateId
-      description: Request body for StartExperiment
-      properties:
-        clientToken:
-          type: string
-          description: Idempotency token
-        experimentTemplateId:
-          type: string
-          description: Template ID to start
-          example: EXT123
-        experimentOptions:
-          type: object
-          description: Experiment options
-        tags:
-          type: object
-          description: Tags
-          additionalProperties:
-            type: string
-    ExperimentState:
-      type: object
-      description: Current state of an experiment
-      properties:
-        status:
-          type: string
-          description: Experiment status
-          example: running
-          enum:
-          - pending
-          - initiating
-          - running
-          - completed
-          - stopping
-          - stopped
-          - failed
-        reason:
-          type: string
-          description: Status reason
-          example: Experiment running normally
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
     ListExperimentsResponse:
       type: object
       description: List of experiments
@@ -340,6 +290,56 @@ components:
           description: Resource tags
           additionalProperties:
             type: string
+    StartExperimentRequest:
+      type: object
+      required:
+      - clientToken
+      - experimentTemplateId
+      description: Request body for StartExperiment
+      properties:
+        clientToken:
+          type: string
+          description: Idempotency token
+        experimentTemplateId:
+          type: string
+          description: Template ID to start
+          example: EXT123
+        experimentOptions:
+          type: object
+          description: Experiment options
+        tags:
+          type: object
+          description: Tags
+          additionalProperties:
+            type: string
+    ExperimentState:
+      type: object
+      description: Current state of an experiment
+      properties:
+        status:
+          type: string
+          description: Experiment status
+          example: running
+          enum:
+          - pending
+          - initiating
+          - running
+          - completed
+          - stopping
+          - stopped
+          - failed
+        reason:
+          type: string
+          description: Status reason
+          example: Experiment running normally
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
     ExperimentResponse:
       type: object
       description: Response containing experiment

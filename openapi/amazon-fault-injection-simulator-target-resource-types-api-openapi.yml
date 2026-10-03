@@ -128,6 +128,17 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
+    ListTargetResourceTypesResponse:
+      type: object
+      description: List of target resource types
+      properties:
+        targetResourceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetResourceType'
+        nextToken:
+          type: string
+          description: Pagination token
     TargetResourceType:
       type: object
       description: An available target resource type for FIS experiments
@@ -145,17 +156,6 @@ components:
           description: Resource type parameters
           additionalProperties:
             type: object
-    ListTargetResourceTypesResponse:
-      type: object
-      description: List of target resource types
-      properties:
-        targetResourceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TargetResourceType'
-        nextToken:
-          type: string
-          description: Pagination token
     TargetResourceTypeResponse:
       type: object
       description: Response containing target resource type
