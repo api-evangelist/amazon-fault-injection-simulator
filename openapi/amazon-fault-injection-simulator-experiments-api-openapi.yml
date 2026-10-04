@@ -230,17 +230,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ListExperimentsResponse:
-      type: object
-      description: List of experiments
-      properties:
-        experiments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Experiment'
-        nextToken:
-          type: string
-          description: Pagination token
     Experiment:
       type: object
       description: A fault injection experiment instance
@@ -290,6 +279,43 @@ components:
           description: Resource tags
           additionalProperties:
             type: string
+    ListExperimentsResponse:
+      type: object
+      description: List of experiments
+      properties:
+        experiments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Experiment'
+        nextToken:
+          type: string
+          description: Pagination token
+    ExperimentResponse:
+      type: object
+      description: Response containing experiment
+      properties:
+        experiment:
+          $ref: '#/components/schemas/Experiment'
+    ExperimentState:
+      type: object
+      description: Current state of an experiment
+      properties:
+        status:
+          type: string
+          description: Experiment status
+          example: running
+          enum:
+          - pending
+          - initiating
+          - running
+          - completed
+          - stopping
+          - stopped
+          - failed
+        reason:
+          type: string
+          description: Status reason
+          example: Experiment running normally
     StartExperimentRequest:
       type: object
       required:
@@ -312,26 +338,6 @@ components:
           description: Tags
           additionalProperties:
             type: string
-    ExperimentState:
-      type: object
-      description: Current state of an experiment
-      properties:
-        status:
-          type: string
-          description: Experiment status
-          example: running
-          enum:
-          - pending
-          - initiating
-          - running
-          - completed
-          - stopping
-          - stopped
-          - failed
-        reason:
-          type: string
-          description: Status reason
-          example: Experiment running normally
     ErrorResponse:
       type: object
       description: Error response from the FIS API
@@ -340,12 +346,6 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
-    ExperimentResponse:
-      type: object
-      description: Response containing experiment
-      properties:
-        experiment:
-          $ref: '#/components/schemas/Experiment'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

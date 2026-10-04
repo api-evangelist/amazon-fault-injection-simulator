@@ -178,14 +178,6 @@ components:
           description: Resource tags
           additionalProperties:
             type: string
-    ErrorResponse:
-      type: object
-      description: Error response from the FIS API
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: The specified resource does not exist.
     TagResourceRequest:
       type: object
       required:
@@ -197,6 +189,14 @@ components:
           description: Tags to apply
           additionalProperties:
             type: string
+    ErrorResponse:
+      type: object
+      description: Error response from the FIS API
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: The specified resource does not exist.
   securitySchemes:
     aws_signature_v4:
       type: apiKey

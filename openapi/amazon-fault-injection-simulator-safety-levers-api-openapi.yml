@@ -137,20 +137,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SafetyLever:
-      type: object
-      description: A safety mechanism that can stop or prevent FIS experiments
-      properties:
-        id:
-          type: string
-          description: Safety lever ID
-          example: SL123
-        arn:
-          type: string
-          description: Safety lever ARN
-          example: arn:aws:fis:us-east-1:123456789012:safety-lever/SL123
-        state:
-          $ref: '#/components/schemas/SafetyLeverState'
     SafetyLeverState:
       type: object
       description: State of a safety lever
@@ -168,6 +154,20 @@ components:
           type: string
           description: Status reason
           example: No active experiments
+    SafetyLever:
+      type: object
+      description: A safety mechanism that can stop or prevent FIS experiments
+      properties:
+        id:
+          type: string
+          description: Safety lever ID
+          example: SL123
+        arn:
+          type: string
+          description: Safety lever ARN
+          example: arn:aws:fis:us-east-1:123456789012:safety-lever/SL123
+        state:
+          $ref: '#/components/schemas/SafetyLeverState'
     UpdateSafetyLeverStateRequest:
       type: object
       required:
@@ -176,12 +176,6 @@ components:
       properties:
         state:
           $ref: '#/components/schemas/SafetyLeverState'
-    SafetyLeverResponse:
-      type: object
-      description: Response containing safety lever
-      properties:
-        safetyLever:
-          $ref: '#/components/schemas/SafetyLever'
     ErrorResponse:
       type: object
       description: Error response from the FIS API
@@ -190,6 +184,12 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
+    SafetyLeverResponse:
+      type: object
+      description: Response containing safety lever
+      properties:
+        safetyLever:
+          $ref: '#/components/schemas/SafetyLever'
   securitySchemes:
     aws_signature_v4:
       type: apiKey
