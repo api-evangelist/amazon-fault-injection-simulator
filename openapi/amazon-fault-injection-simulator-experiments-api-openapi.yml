@@ -230,6 +230,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ListExperimentsResponse:
+      type: object
+      description: List of experiments
+      properties:
+        experiments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Experiment'
+        nextToken:
+          type: string
+          description: Pagination token
+    ExperimentResponse:
+      type: object
+      description: Response containing experiment
+      properties:
+        experiment:
+          $ref: '#/components/schemas/Experiment'
     Experiment:
       type: object
       description: A fault injection experiment instance
@@ -279,23 +296,6 @@ components:
           description: Resource tags
           additionalProperties:
             type: string
-    ListExperimentsResponse:
-      type: object
-      description: List of experiments
-      properties:
-        experiments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Experiment'
-        nextToken:
-          type: string
-          description: Pagination token
-    ExperimentResponse:
-      type: object
-      description: Response containing experiment
-      properties:
-        experiment:
-          $ref: '#/components/schemas/Experiment'
     ExperimentState:
       type: object
       description: Current state of an experiment

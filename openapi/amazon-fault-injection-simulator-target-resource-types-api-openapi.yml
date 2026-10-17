@@ -131,12 +131,6 @@ components:
         nextToken:
           type: string
           description: Pagination token
-    TargetResourceTypeResponse:
-      type: object
-      description: Response containing target resource type
-      properties:
-        targetResourceType:
-          $ref: '#/components/schemas/TargetResourceType'
     ErrorResponse:
       type: object
       description: Error response from the FIS API
@@ -162,6 +156,12 @@ components:
           description: Resource type parameters
           additionalProperties:
             type: object
+    TargetResourceTypeResponse:
+      type: object
+      description: Response containing target resource type
+      properties:
+        targetResourceType:
+          $ref: '#/components/schemas/TargetResourceType'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

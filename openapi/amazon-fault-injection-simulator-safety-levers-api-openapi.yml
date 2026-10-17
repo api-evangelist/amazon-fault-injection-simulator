@@ -137,6 +137,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UpdateSafetyLeverStateRequest:
+      type: object
+      required:
+      - state
+      description: Request to update safety lever state
+      properties:
+        state:
+          $ref: '#/components/schemas/SafetyLeverState'
     SafetyLeverState:
       type: object
       description: State of a safety lever
@@ -168,14 +176,12 @@ components:
           example: arn:aws:fis:us-east-1:123456789012:safety-lever/SL123
         state:
           $ref: '#/components/schemas/SafetyLeverState'
-    UpdateSafetyLeverStateRequest:
+    SafetyLeverResponse:
       type: object
-      required:
-      - state
-      description: Request to update safety lever state
+      description: Response containing safety lever
       properties:
-        state:
-          $ref: '#/components/schemas/SafetyLeverState'
+        safetyLever:
+          $ref: '#/components/schemas/SafetyLever'
     ErrorResponse:
       type: object
       description: Error response from the FIS API
@@ -184,12 +190,6 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
-    SafetyLeverResponse:
-      type: object
-      description: Response containing safety lever
-      properties:
-        safetyLever:
-          $ref: '#/components/schemas/SafetyLever'
   securitySchemes:
     aws_signature_v4:
       type: apiKey

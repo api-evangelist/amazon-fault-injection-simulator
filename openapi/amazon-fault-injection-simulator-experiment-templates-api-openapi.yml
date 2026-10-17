@@ -293,85 +293,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExperimentTemplate:
-      type: object
-      description: An experiment template defining fault injection targets, actions, and stop conditions
-      properties:
-        id:
-          type: string
-          description: Template ID
-          example: EXT123
-        arn:
-          type: string
-          description: Template ARN
-          example: arn:aws:fis:us-east-1:123456789012:experiment-template/EXT123
-        description:
-          type: string
-          description: Template description
-          example: Test EC2 instance failure
-        targets:
-          type: object
-          description: Target definitions
-          additionalProperties:
-            $ref: '#/components/schemas/ExperimentTemplateTarget'
-        actions:
-          type: object
-          description: Action definitions
-          additionalProperties:
-            $ref: '#/components/schemas/ExperimentTemplateAction'
-        stopConditions:
-          type: array
-          description: Stop conditions
-          items:
-            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
-        creationTime:
-          type: string
-          format: date-time
-          description: Template creation time
-          example: '2026-04-19T12:00:00Z'
-        lastUpdateTime:
-          type: string
-          format: date-time
-          description: Last update time
-        roleArn:
-          type: string
-          description: IAM role ARN for experiment execution
-        tags:
-          type: object
-          description: Resource tags
-          additionalProperties:
-            type: string
-    ExperimentTemplateTarget:
-      type: object
-      description: Target definition in an experiment template
-      properties:
-        resourceType:
-          type: string
-          description: AWS resource type
-          example: aws:ec2:instance
-        resourceArns:
-          type: array
-          description: Specific resource ARNs
-          items:
-            type: string
-        resourceTags:
-          type: object
-          description: Tags to filter resources
-          additionalProperties:
-            type: string
-        filters:
-          type: array
-          description: Resource filters
-          items:
-            type: object
-        selectionMode:
-          type: string
-          description: Selection mode
-          example: ALL
-          enum:
-          - ALL
-          - COUNT(n)
-          - PERCENT(n)
     UpdateExperimentTemplateRequest:
       type: object
       description: Request body for UpdateExperimentTemplate
@@ -397,6 +318,50 @@ components:
         roleArn:
           type: string
           description: Updated IAM role ARN
+    ExperimentTemplateStopCondition:
+      type: object
+      description: Stop condition for an experiment
+      properties:
+        source:
+          type: string
+          description: Stop condition source
+          example: aws:cloudwatch:alarm
+        value:
+          type: string
+          description: CloudWatch alarm ARN or none
+          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
+    ExperimentTemplateAction:
+      type: object
+      description: Action definition in an experiment template
+      properties:
+        actionId:
+          type: string
+          description: FIS action ID
+          example: aws:ec2:stop-instances
+        description:
+          type: string
+          description: Action description
+        parameters:
+          type: object
+          description: Action parameters
+          additionalProperties:
+            type: string
+        targets:
+          type: object
+          description: Target mappings
+          additionalProperties:
+            type: string
+        startAfter:
+          type: array
+          description: Actions that must complete first
+          items:
+            type: string
+    ExperimentTemplateResponse:
+      type: object
+      description: Response containing experiment template
+      properties:
+        experimentTemplate:
+          $ref: '#/components/schemas/ExperimentTemplate'
     ListExperimentTemplatesResponse:
       type: object
       description: List of experiment templates
@@ -448,49 +413,53 @@ components:
           description: Tags
           additionalProperties:
             type: string
-    ExperimentTemplateResponse:
+    ExperimentTemplate:
       type: object
-      description: Response containing experiment template
+      description: An experiment template defining fault injection targets, actions, and stop conditions
       properties:
-        experimentTemplate:
-          $ref: '#/components/schemas/ExperimentTemplate'
-    ExperimentTemplateStopCondition:
-      type: object
-      description: Stop condition for an experiment
-      properties:
-        source:
+        id:
           type: string
-          description: Stop condition source
-          example: aws:cloudwatch:alarm
-        value:
+          description: Template ID
+          example: EXT123
+        arn:
           type: string
-          description: CloudWatch alarm ARN or none
-          example: arn:aws:cloudwatch:us-east-1:123456789012:alarm/my-alarm
-    ExperimentTemplateAction:
-      type: object
-      description: Action definition in an experiment template
-      properties:
-        actionId:
-          type: string
-          description: FIS action ID
-          example: aws:ec2:stop-instances
+          description: Template ARN
+          example: arn:aws:fis:us-east-1:123456789012:experiment-template/EXT123
         description:
           type: string
-          description: Action description
-        parameters:
-          type: object
-          description: Action parameters
-          additionalProperties:
-            type: string
+          description: Template description
+          example: Test EC2 instance failure
         targets:
           type: object
-          description: Target mappings
+          description: Target definitions
           additionalProperties:
-            type: string
-        startAfter:
+            $ref: '#/components/schemas/ExperimentTemplateTarget'
+        actions:
+          type: object
+          description: Action definitions
+          additionalProperties:
+            $ref: '#/components/schemas/ExperimentTemplateAction'
+        stopConditions:
           type: array
-          description: Actions that must complete first
+          description: Stop conditions
           items:
+            $ref: '#/components/schemas/ExperimentTemplateStopCondition'
+        creationTime:
+          type: string
+          format: date-time
+          description: Template creation time
+          example: '2026-04-19T12:00:00Z'
+        lastUpdateTime:
+          type: string
+          format: date-time
+          description: Last update time
+        roleArn:
+          type: string
+          description: IAM role ARN for experiment execution
+        tags:
+          type: object
+          description: Resource tags
+          additionalProperties:
             type: string
     ErrorResponse:
       type: object
@@ -500,6 +469,37 @@ components:
           type: string
           description: Error message
           example: The specified resource does not exist.
+    ExperimentTemplateTarget:
+      type: object
+      description: Target definition in an experiment template
+      properties:
+        resourceType:
+          type: string
+          description: AWS resource type
+          example: aws:ec2:instance
+        resourceArns:
+          type: array
+          description: Specific resource ARNs
+          items:
+            type: string
+        resourceTags:
+          type: object
+          description: Tags to filter resources
+          additionalProperties:
+            type: string
+        filters:
+          type: array
+          description: Resource filters
+          items:
+            type: object
+        selectionMode:
+          type: string
+          description: Selection mode
+          example: ALL
+          enum:
+          - ALL
+          - COUNT(n)
+          - PERCENT(n)
   securitySchemes:
     aws_signature_v4:
       type: apiKey
