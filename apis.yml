@@ -36,6 +36,11 @@ tags:
   - AWS
   - Chaos Engineering
   - DevOps
+  - Resilience Testing
+tags_raw:
+  - AWS
+  - Chaos Engineering
+  - DevOps
   - Fault Injection
   - Resilience Testing
 url: https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/apis.yml
