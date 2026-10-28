@@ -1,4 +1,4 @@
-# Amazon Fault Injection Simulator (amazon-fault-injection-simulator)
+# Amazon Fault Injection Simulator
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,84 +66,214 @@
 
 AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. It allows you to improve an application's performance, observability, and resiliency by identifying and fixing weaknesses through controlled chaos engineering experiments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/apis.yml)
+**Areas:** AWS · Chaos Engineering · DevOps · Resilience Testing
 
-## Scope
+## Amazon Fault Injection Simulator on APIs.io
 
-- **Type:** Index
+Everything profiled for Amazon Fault Injection Simulator is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/amazon-fault-injection-simulator/](https://apis.io/providers/amazon-fault-injection-simulator/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- AWS
-- Chaos Engineering
-- DevOps
-- Fault Injection
-- Resilience Testing
+- [Amazon Fault Injection Simulator Actions API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-actions-api/) — Discover available FIS fault injection actions
+- [Amazon Fault Injection Simulator Experiment Templates API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-experiment-templates-api/) — Create and manage fault injection experiment templates
+- [Amazon Fault Injection Simulator Experiments API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-experiments-api/) — Start, stop, and monitor fault injection experiments
+- [Amazon Fault Injection Simulator Safety Levers API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-safety-levers-api/) — Manage safety levers for experiment control
+- [Amazon Fault Injection Simulator Tagging API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-tagging-api/) — Manage tags on FIS resources
+- [Amazon Fault Injection Simulator Target Resource Types API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-target-resource-types-api/) — Discover available target resource types
+- [Amazon Fault Injection Simulator Fault Injection Simulator Operations API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-operations-api/) — The Fault Injection Simulator Operations API from Amazon Fault Injection Simulator — 1 operation(s) for fault injection simulator operations.
+- [Amazon Fault Injection Simulator Fault Injection Simulator Targetaccountconfigurations API](https://apis.io/apis/amazon-fault-injection-simulator/amazon-fault-injection-simulator-targetaccountconfigurations-api/) — The Fault Injection Simulator Targetaccountconfigurations API from Amazon Fault Injection Simulator — 4 operation(s) for fault injection simulator…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (7)
 
-### AWS Fault Injection Simulator API
+Multi-step workflows that chain operations into a business task.
 
-The AWS Fault Injection Simulator API provides programmatic access to create and manage experiment templates, experiments, and actions for conducting chaos engineering experiments on AWS workloads.
+- [AWS FIS Discover Action Detail](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-discover-action-detail-workflow/)
+- [AWS FIS Discover Target Resource Type](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-discover-target-resource-type-workflow/)
+- [AWS FIS Find and Stop Running Experiment](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-find-and-stop-running-experiment-workflow/)
+- [AWS FIS List Then Get Experiment Template](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-list-then-get-template-workflow/)
+- [AWS FIS Run Experiment to Completion](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-run-experiment-to-completion-workflow/)
+- [AWS FIS Start Then Stop Experiment](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-start-then-stop-experiment-workflow/)
+- [AWS FIS Update Template Then Run](https://apis.io/arazzos/amazon-fault-injection-simulator/amazon-fault-injection-simulator-update-template-then-run-workflow/)
 
-- **Human URL:** [https://aws.amazon.com/fis/](https://aws.amazon.com/fis/)
-- **Base URL:** `https://fis.amazonaws.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Chaos Engineering
-- Fault Injection
-- Resilience Testing
+- [Amazon Fault Injection Simulator Agentic Access](https://apis.io/agentic-access/amazon-fault-injection-simulator/amazon-fault-injection-simulator-agentic-access/)
 
-#### Properties
+#### JSON Schema (10)
 
-- [Documentation](https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html)
-- [OpenAPI](openapi/amazon-fis-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/amazon-fis.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/amazon-fis.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/amazon-fis-experiment-template-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/amazon-fis-experiment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/amazon-fis-action-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/amazon-fis-safety-lever-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/amazon-fis-experiment-template-structure.json)
-- [JSON Structure](json-structure/amazon-fis-experiment-structure.json)
-- [Example](examples/amazon-fis-experiment-template-example.json)
-- [Example](examples/amazon-fis-experiment-example.json)
-- [Getting Started](https://aws.amazon.com/fis/getting-started/)
-- [Pricing](https://aws.amazon.com/fis/pricing/)
-- [F A Q](https://aws.amazon.com/fis/faqs/)
-- [API Reference](https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html)
+The data models the API reads and writes.
 
-## Common Properties
+- [Action](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-action/)
+- [Experiment](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment/)
+- [ExperimentState](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment-state/)
+- [ExperimentTemplate](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment-template/)
+- [ExperimentTemplateAction](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment-template-action/)
+- [ExperimentTemplateStopCondition](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment-template-stop-condition/)
+- [ExperimentTemplateTarget](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-experiment-template-target/)
+- [SafetyLever](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-safety-lever/)
+- [SafetyLeverState](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-safety-lever-state/)
+- [TargetResourceType](https://apis.io/schemas/amazon-fault-injection-simulator/amazon-fis-target-resource-type/)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://aws.amazon.com/fis/)
+#### JSON Structure (10)
+
+Data models expressed in JSON Structure.
+
+- [Amazon Fis Action Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-action-structure/)
+- [Amazon Fis Experiment State Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-state-structure/)
+- [Amazon Fis Experiment Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-structure/)
+- [Amazon Fis Experiment Template Action Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-template-action-structure/)
+- [Amazon Fis Experiment Template Stop Condition Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-template-stop-condition-structure/)
+- [Amazon Fis Experiment Template Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-template-structure/)
+- [Amazon Fis Experiment Template Target Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-experiment-template-target-structure/)
+- [Amazon Fis Safety Lever State Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-safety-lever-state-structure/)
+- [Amazon Fis Safety Lever Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-safety-lever-structure/)
+- [Amazon Fis Target Resource Type Structure](https://apis.io/json-structure/amazon-fault-injection-simulator/amazon-fis-target-resource-type-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Amazon Fis Context](https://apis.io/jsonld/amazon-fault-injection-simulator/amazon-fis-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Amazon Fis Vocabulary](https://apis.io/vocabularies/amazon-fault-injection-simulator/amazon-fis-vocabulary/)
+
+#### Examples (10)
+
+Example requests and responses.
+
+- [Amazon Fis Action Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-action-example/)
+- [Amazon Fis Experiment Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-example/)
+- [Amazon Fis Experiment State Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-state-example/)
+- [Amazon Fis Experiment Template Action Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-template-action-example/)
+- [Amazon Fis Experiment Template Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-template-example/)
+- [Amazon Fis Experiment Template Stop Condition Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-template-stop-condition-example/)
+- [Amazon Fis Experiment Template Target Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-experiment-template-target-example/)
+- [Amazon Fis Safety Lever Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-safety-lever-example/)
+- [Amazon Fis Safety Lever State Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-safety-lever-state-example/)
+- [Amazon Fis Target Resource Type Example](https://apis.io/examples/amazon-fault-injection-simulator/amazon-fis-target-resource-type-example/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [AWS Fault Injection Simulator Actions API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-actions-api/)
+- [AWS Fault Injection Simulator Actions Experiment Templates API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-experiment-templates-api/)
+- [AWS Fault Injection Simulator Actions Experiments API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-experiments-api/)
+- [AWS Fault Injection Simulator Actions Safety Levers API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-safety-levers-api/)
+- [AWS Fault Injection Simulator Actions Tagging API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-tagging-api/)
+- [AWS Fault Injection Simulator Actions Target Resource Types API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fault-injection-simulator-target-resource-types-api/)
+- [AWS Fault Injection Simulator API](https://apis.io/collections/amazon-fault-injection-simulator/open-amazon-fis/)
+- [AWS Fault Injection Simulator API](https://apis.io/collections/amazon-fault-injection-simulator/postman-amazon-fis/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Amazon Fault Injection Simulator — jsonschema rules](https://apis.io/rules/amazon-fault-injection-simulator/amazon-fault-injection-simulator-jsonschema-spectral-rules/)
+- [Amazon Fault Injection Simulator API Rules](https://apis.io/rules/amazon-fault-injection-simulator/amazon-fault-injection-simulator-spectral-rules/)
+- [Amazon Fault Injection Simulator — amazon fis rules](https://apis.io/rules/amazon-fault-injection-simulator/amazon-fis-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Amazon Fault Injection Simulator Authentication](https://apis.io/security/amazon-fault-injection-simulator/amazon-fault-injection-simulator-authentication/)
+- [Amazon Fault Injection Simulator Domain Security](https://apis.io/security/amazon-fault-injection-simulator/amazon-fault-injection-simulator-domain-security/)
+- [Amazon Fault Injection Simulator Trust Center](https://apis.io/security/amazon-fault-injection-simulator/amazon-fault-injection-simulator-trust-center/)
+- [Amazon Fault Injection Simulator Vulnerability Disclosure](https://apis.io/security/amazon-fault-injection-simulator/amazon-fault-injection-simulator-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Amazon Fault Injection Simulator Plans Pricing](https://apis.io/plans/amazon-fault-injection-simulator/amazon-fault-injection-simulator-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Amazon Fault Injection Simulator Rate Limits](https://apis.io/rate-limits/amazon-fault-injection-simulator/amazon-fault-injection-simulator-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Amazon Fault Injection Simulator Finops](https://apis.io/finops/amazon-fault-injection-simulator/amazon-fault-injection-simulator-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://aws.amazon.com/fis/)
 - [Documentation](https://docs.aws.amazon.com/fis/)
-- [Terms of Service](https://aws.amazon.com/service-terms/)
-- [Privacy Policy](https://aws.amazon.com/privacy/)
 - [Support](https://aws.amazon.com/premiumsupport/)
 - [Blog](https://aws.amazon.com/blogs/devops/tag/aws-fault-injection-simulator/)
-- [GitHub Organization](https://github.com/aws)
-- [Console](https://console.aws.amazon.com/fis/)
-- [Sign Up](https://portal.aws.amazon.com/billing/signup)
-- [Status Page](https://health.aws.amazon.com/health/status)
-- [YouTube](https://www.youtube.com/user/AmazonWebServices)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/aws-fis)
-- [Spectral Rules](rules/amazon-fis-spectral-rules.yml)
-- [Vocabulary](vocabulary/amazon-fis-vocabulary.yaml)
-- [JSON-LD](json-ld/amazon-fis-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://aws.amazon.com/marketplace/)
+- [Terms of service](https://aws.amazon.com/service-terms/)
+- [Privacy policy](https://aws.amazon.com/privacy/)
+- [GitHub](https://github.com/aws)
+- [Status](https://health.aws.amazon.com/health/status)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 48.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 34.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 53.6 |
+| Access clarity | 60.5 |
+
+**Agent readiness 36.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/amazon-fault-injection-simulator/](https://apis.io/providers/amazon-fault-injection-simulator/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Amazon Fault Injection Simulator: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/amazon-fault-injection-simulator/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
