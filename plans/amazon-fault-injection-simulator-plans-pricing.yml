@@ -1,0 +1,75 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://aws.amazon.com/fis/pricing/
+sources:
+- https://aws.amazon.com/fis/pricing/
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: Pay-as-you-go usage pricing based on action-minutes and additional target accounts; no upfront costs
+  or minimum fees stated. Free Tier sign-up and quote request links present.
+plan_count: 3
+currency: USD
+plans:
+- name: Action-minute (standard regions)
+  price_text: $0.10 per action-minute
+  price: 0.1
+  currency: USD
+  period: per-use
+  unit: action-minute
+  overage: an additional $0.10 per action-minute for each additional account
+- name: Action-minute (AWS GovCloud US-East and US-West)
+  price_text: $0.12 per action-minute
+  price: 0.12
+  currency: USD
+  period: per-use
+  unit: action-minute
+  overage: an additional $0.12 per action-minute for each additional account
+- name: Experiment report
+  price_text: $5 per report
+  price: 5
+  currency: USD
+  period: per-use
+  unit: report
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units:
+  - compute
+  - object
+  plans:
+  - name: Action-minute (standard regions)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Action-minute (AWS GovCloud US-East and US-West)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Experiment report
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - other
