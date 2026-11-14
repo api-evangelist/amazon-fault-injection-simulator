@@ -1,9 +1,7 @@
 aid: amazon-fault-injection-simulator
 name: Amazon Fault Injection Simulator
-description: >-
-  AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. It
-  allows you to improve an application's performance, observability, and resiliency by identifying and fixing weaknesses
-  through controlled chaos engineering experiments.
+description: AWS Fault Injection Simulator (FIS) is a fully managed service for running fault injection experiments on AWS. It allows you to improve an
+  application's performance, observability, and resiliency by identifying and fixing weaknesses through controlled chaos engineering experiments.
 type: Index
 deliveryModel:
   model: saas
@@ -24,29 +22,213 @@ accessModel:
   try_now: false
   public: false
   label: Paid
-  confidence: medium
+  confidence: high
   source:
   - plans
   - authentication
+  - rate-limits
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-fault-injection-simulator.png
 tags:
-  - Amazon Web Services
-  - Chaos Engineering
-  - DevOps
-  - Resilience Testing
+- Amazon Web Services
+- Chaos Engineering
+- DevOps
+- Resilience Testing
 tags_raw:
-  - AWS
-  - Chaos Engineering
-  - DevOps
-  - Fault Injection
-  - Resilience Testing
+- AWS
+- Chaos Engineering
+- DevOps
+- Fault Injection
+- Resilience Testing
 url: https://raw.githubusercontent.com/api-evangelist/amazon-fault-injection-simulator/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-11-11'
 specificationVersion: '0.23'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- type: Spectral
+  url: rules/amazon-fis-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-fault-injection-simulator-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-fault-injection-simulator-rules.yml
+- type: Spectral
+  url: rules/amazon-fault-injection-simulator-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/amazon-fault-injection-simulator-context.jsonld
+- type: Vocabulary
+  url: vocabulary/amazon-fault-injection-simulator-vocabulary.yml
+- type: DataModel
+  url: data-model/amazon-fault-injection-simulator-data-model.yml
+- type: CLI
+  url: cli/amazon-fault-injection-simulator-cli.yml
+- type: ChangeLog
+  url: changelog/amazon-fault-injection-simulator-changelog.yml
+- type: Idempotency
+  url: conventions/amazon-fault-injection-simulator-conventions.yml
+- type: Conventions
+  url: conventions/amazon-fault-injection-simulator-conventions.yml
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Lifecycle
+  url: lifecycle/amazon-fault-injection-simulator-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/amazon-fault-injection-simulator-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-fault-injection-simulator-conformance.yml
+- type: LLMsTxt
+  url: llms/amazon-fault-injection-simulator-llms.txt
+- type: SecurityTxt
+  url: well-known/amazon-fault-injection-simulator-security.txt
+- type: WellKnown
+  url: well-known/amazon-fault-injection-simulator-well-known.yml
+- type: Hosts
+  url: hosts/amazon-fault-injection-simulator-hosts.yml
+- type: Vendors
+  url: vendors/amazon-fault-injection-simulator-vendors.yml
+- type: SignUp
+  url: https://signin.aws.amazon.com/signup?request_type=builderId
+- type: Security
+  url: https://aws.amazon.com/security/?nc2=h_dsc_aa_sec
+- type: Newsroom
+  url: https://aws.amazon.com/media/?nc2=h_sol_ind_med
+- type: GettingStarted
+  url: https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/what-is-rds
+- type: Plans
+  url: plans/amazon-fault-injection-simulator-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/amazon-fault-injection-simulator-rate-limits.yml
+- type: FinOps
+  url: finops/amazon-fault-injection-simulator-finops.yml
+- type: AgenticAccess
+  url: agentic-access/amazon-fault-injection-simulator-agentic-access.yml
+- type: TrustCenter
+  url: security/amazon-fault-injection-simulator-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-fault-injection-simulator-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-fault-injection-simulator-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-fault-injection-simulator-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-fault-injection-simulator/overview
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-discover-action-detail-workflow.yml
+  name: AWS FIS Discover Action Detail
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-discover-target-resource-type-workflow.yml
+  name: AWS FIS Discover Target Resource Type
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-find-and-stop-running-experiment-workflow.yml
+  name: AWS FIS Find and Stop Running Experiment
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-list-then-get-template-workflow.yml
+  name: AWS FIS List Then Get Experiment Template
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-run-experiment-to-completion-workflow.yml
+  name: AWS FIS Run Experiment to Completion
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-start-then-stop-experiment-workflow.yml
+  name: AWS FIS Start Then Stop Experiment
+- type: Arazzo
+  url: arazzo/amazon-fault-injection-simulator-update-template-then-run-workflow.yml
+  name: AWS FIS Update Template Then Run
+- type: Portal
+  url: https://aws.amazon.com/fis/
+- type: Website
+  url: https://aws.amazon.com/fis/
+- type: Documentation
+  url: https://docs.aws.amazon.com/fis/
+- type: TermsOfService
+  url: https://aws.amazon.com/service-terms/
+- type: PrivacyPolicy
+  url: https://aws.amazon.com/privacy/
+- type: Support
+  url: https://aws.amazon.com/premiumsupport/
+- type: Blog
+  url: https://aws.amazon.com/blogs/devops/tag/aws-fault-injection-simulator/
+- type: GitHubOrganization
+  url: https://github.com/aws
+- type: Console
+  url: https://console.aws.amazon.com/fis/
+- type: Signup
+  url: https://portal.aws.amazon.com/billing/signup
+- type: StatusPage
+  url: https://health.aws.amazon.com/health/status
+- type: YouTube
+  url: https://www.youtube.com/user/AmazonWebServices
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/aws-fis
+- type: SpectralRules
+  url: rules/amazon-fis-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-fis-vocabulary.yaml
+- type: JSONLD
+  url: json-ld/amazon-fis-context.jsonld
+- type: Features
+  data:
+  - name: Managed Fault Injection
+    description: Fully managed service requiring no agent installation with pre-built fault injection actions for EC2, RDS, ECS, EKS, and more.
+  - name: Pre-built Scenarios
+    description: Ready-to-use resilience scenarios for AZ failures, power interruptions, network disruptions, and cross-region connectivity issues.
+  - name: Safety Controls
+    description: CloudWatch alarm-based stop conditions and safety levers prevent unintended impact during live testing.
+  - name: Fine-grained Targeting
+    description: Tag-based resource targeting scopes experiments to specific environments, applications, or resource subsets.
+  - name: Multi-account Support
+    description: Run experiments across multiple AWS accounts using target account configurations.
+  - name: CI/CD Integration
+    description: API and CLI access enables automated resilience testing in deployment pipelines.
+  - name: Real-time Visibility
+    description: Console and API provide real-time status of executing actions, affected resources, and triggered stop conditions.
+  - name: IAM Security
+    description: Fine-grained IAM controls restrict which users can create, run, or view experiments and affected resources.
+- type: UseCases
+  data:
+  - name: Application Resilience Testing
+    description: Validate application behavior under resource failures before they occur in production.
+  - name: Chaos Engineering
+    description: Run structured fault injection experiments following chaos engineering principles.
+  - name: Observability Validation
+    description: Verify that monitoring and alerting systems detect and respond to failures correctly.
+  - name: Game Days
+    description: Conduct planned game day exercises simulating failure scenarios for team readiness.
+  - name: Automated Pipeline Testing
+    description: Integrate resilience testing into CI/CD pipelines for continuous validation.
+  - name: Multi-region Failover Testing
+    description: Test cross-region failover mechanisms and recovery time objectives.
+- type: Integrations
+  data:
+  - name: Amazon CloudWatch
+    description: Stop conditions use CloudWatch alarms to automatically halt experiments.
+  - name: AWS IAM
+    description: Task execution roles define which AWS resources experiments can affect.
+  - name: Amazon EC2
+    description: Stop instances, terminate instances, and inject CPU/memory stress on EC2.
+  - name: Amazon ECS
+    description: Stop ECS tasks and inject faults into containerized workloads.
+  - name: Amazon EKS
+    description: Terminate Kubernetes nodes and pods running on EKS.
+  - name: Amazon RDS
+    description: Trigger RDS failovers, reboot instances, and pause cluster I/O.
+  - name: AWS Lambda
+    description: Inject latency and errors into Lambda function invocations.
+  - name: Amazon DynamoDB
+    description: Pause DynamoDB replication between replicas.
+- type: Integrations
+  url: https://aws.amazon.com/marketplace/
+- type: UsageTerms
+  url: terms/amazon-fault-injection-simulator-terms-of-service.yml
+- type: DataProcessing
+  url: privacy/amazon-fault-injection-simulator-privacy-policy.yml
+- type: Attestations
+  url: compliance/amazon-fault-injection-simulator-compliance.yml
+- type: AIPreferences
+  url: ai-preferences/amazon-fault-injection-simulator-ai-preferences.yml
 apis:
 - aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-actions-api
   name: Amazon Fault Injection Simulator Actions API
@@ -61,13 +243,7 @@ apis:
   - type: Documentation
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
   - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
     url: json-schema/amazon-fis-action-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
     url: json-structure/amazon-fis-experiment-template-structure.json
   - type: JSONStructure
@@ -84,8 +260,7 @@ apis:
     url: https://aws.amazon.com/fis/faqs/
   - type: APIReference
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-- aid: >-
-    amazon-fault-injection-simulator:amazon-fault-injection-simulator-experiment-templates-api
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-experiment-templates-api
   name: Amazon Fault Injection Simulator Experiment Templates API
   description: Create and manage fault injection experiment templates
   humanURL: https://aws.amazon.com/fis/
@@ -99,12 +274,6 @@ apis:
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
   - type: JSONSchema
     url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-action-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
     url: json-structure/amazon-fis-experiment-template-structure.json
   - type: JSONStructure
@@ -134,13 +303,7 @@ apis:
   - type: Documentation
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
   - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
     url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-action-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
     url: json-structure/amazon-fis-experiment-template-structure.json
   - type: JSONStructure
@@ -169,12 +332,6 @@ apis:
     url: openapi/amazon-fault-injection-simulator-safety-levers-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-action-schema.json
   - type: JSONSchema
     url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
@@ -205,14 +362,6 @@ apis:
     url: openapi/amazon-fault-injection-simulator-tagging-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-action-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
     url: json-structure/amazon-fis-experiment-template-structure.json
   - type: JSONStructure
@@ -229,8 +378,19 @@ apis:
     url: https://aws.amazon.com/fis/faqs/
   - type: APIReference
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-- aid: >-
-    amazon-fault-injection-simulator:amazon-fault-injection-simulator-target-resource-types-api
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-tag-resource-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-untag-resource-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-tags-for-resource-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-tags-for-resource-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-tag-resource-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-untag-resource-response-schema.json
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-target-resource-types-api
   name: Amazon Fault Injection Simulator Target Resource Types API
   description: Discover available target resource types
   humanURL: https://aws.amazon.com/fis/
@@ -242,14 +402,6 @@ apis:
     url: openapi/amazon-fault-injection-simulator-target-resource-types-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-template-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-experiment-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-action-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-fis-safety-lever-schema.json
   - type: JSONStructure
     url: json-structure/amazon-fis-experiment-template-structure.json
   - type: JSONStructure
@@ -266,11 +418,17 @@ apis:
     url: https://aws.amazon.com/fis/faqs/
   - type: APIReference
     url: https://docs.aws.amazon.com/fis/latest/APIReference/Welcome.html
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-target-resource-types-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-target-resource-types-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-get-target-resource-type-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-get-target-resource-type-response-schema.json
 - aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-operations-api
   name: Amazon Fault Injection Simulator Fault Injection Simulator Operations API
-  description: >-
-    The Fault Injection Simulator Operations API from Amazon Fault Injection Simulator — 1 operation(s)
-    for fault injection simulator operations.
+  description: The Fault Injection Simulator Operations API from Amazon Fault Injection Simulator — 1 operation(s) for fault injection simulator operations.
   humanURL: https://aws.amazon.com/fis/
   baseURL: https://fis.amazonaws.com
   tags:
@@ -278,13 +436,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-fault-injection-simulator-operations-api-openapi.yml
-- aid: >-
-    amazon-fault-injection-simulator:amazon-fault-injection-simulator-targetaccountconfigurations-api
-  name: >-
-    Amazon Fault Injection Simulator Fault Injection Simulator Targetaccountconfigurations API
-  description: >-
-    The Fault Injection Simulator Targetaccountconfigurations API from Amazon Fault Injection Simulator
-    — 4 operation(s) for fault injection simulator targetaccountconfigurations.
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-experiment-resolved-targets-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-experiment-resolved-targets-response-schema.json
+- aid: amazon-fault-injection-simulator:amazon-fault-injection-simulator-targetaccountconfigurations-api
+  name: Amazon Fault Injection Simulator Fault Injection Simulator Targetaccountconfigurations API
+  description: The Fault Injection Simulator Targetaccountconfigurations API from Amazon Fault Injection Simulator — 4 operation(s) for fault injection
+    simulator targetaccountconfigurations.
   humanURL: https://aws.amazon.com/fis/
   baseURL: https://fis.amazonaws.com
   tags:
@@ -292,148 +451,32 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-fault-injection-simulator-targetaccountconfigurations-api-openapi.yml
-common:
-  - type: Plans
-    url: plans/amazon-fault-injection-simulator-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/amazon-fault-injection-simulator-rate-limits.yml
-  - type: FinOps
-    url: finops/amazon-fault-injection-simulator-finops.yml
-  - type: AgenticAccess
-    url: agentic-access/amazon-fault-injection-simulator-agentic-access.yml
-  - type: TrustCenter
-    url: security/amazon-fault-injection-simulator-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/amazon-fault-injection-simulator-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/amazon-fault-injection-simulator-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-fault-injection-simulator-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/amazon-fault-injection-simulator/overview
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-discover-action-detail-workflow.yml
-    name: AWS FIS Discover Action Detail
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-discover-target-resource-type-workflow.yml
-    name: AWS FIS Discover Target Resource Type
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-find-and-stop-running-experiment-workflow.yml
-    name: AWS FIS Find and Stop Running Experiment
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-list-then-get-template-workflow.yml
-    name: AWS FIS List Then Get Experiment Template
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-run-experiment-to-completion-workflow.yml
-    name: AWS FIS Run Experiment to Completion
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-start-then-stop-experiment-workflow.yml
-    name: AWS FIS Start Then Stop Experiment
-  - type: Arazzo
-    url: arazzo/amazon-fault-injection-simulator-update-template-then-run-workflow.yml
-    name: AWS FIS Update Template Then Run
-  - type: Portal
-    url: https://aws.amazon.com/fis/
-  - type: Website
-    url: https://aws.amazon.com/fis/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/fis/
-  - type: TermsOfService
-    url: https://aws.amazon.com/service-terms/
-  - type: PrivacyPolicy
-    url: https://aws.amazon.com/privacy/
-  - type: Support
-    url: https://aws.amazon.com/premiumsupport/
-  - type: Blog
-    url: https://aws.amazon.com/blogs/devops/tag/aws-fault-injection-simulator/
-  - type: GitHubOrganization
-    url: https://github.com/aws
-  - type: Console
-    url: https://console.aws.amazon.com/fis/
-  - type: Signup
-    url: https://portal.aws.amazon.com/billing/signup
-  - type: StatusPage
-    url: https://health.aws.amazon.com/health/status
-  - type: YouTube
-    url: https://www.youtube.com/user/AmazonWebServices
-  - type: StackOverflow
-    url: https://stackoverflow.com/questions/tagged/aws-fis
-  - type: SpectralRules
-    url: rules/amazon-fis-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/amazon-fis-vocabulary.yaml
-  - type: JSONLD
-    url: json-ld/amazon-fis-context.jsonld
-  - type: Features
-    data:
-      - name: Managed Fault Injection
-        description: >-
-          Fully managed service requiring no agent installation with pre-built fault injection actions for EC2, RDS,
-          ECS, EKS, and more.
-      - name: Pre-built Scenarios
-        description: >-
-          Ready-to-use resilience scenarios for AZ failures, power interruptions, network disruptions, and cross-region
-          connectivity issues.
-      - name: Safety Controls
-        description: CloudWatch alarm-based stop conditions and safety levers prevent unintended impact during live testing.
-      - name: Fine-grained Targeting
-        description: Tag-based resource targeting scopes experiments to specific environments, applications, or resource subsets.
-      - name: Multi-account Support
-        description: Run experiments across multiple AWS accounts using target account configurations.
-      - name: CI/CD Integration
-        description: API and CLI access enables automated resilience testing in deployment pipelines.
-      - name: Real-time Visibility
-        description: >-
-          Console and API provide real-time status of executing actions, affected resources, and triggered stop
-          conditions.
-      - name: IAM Security
-        description: Fine-grained IAM controls restrict which users can create, run, or view experiments and affected resources.
-  - type: UseCases
-    data:
-      - name: Application Resilience Testing
-        description: Validate application behavior under resource failures before they occur in production.
-      - name: Chaos Engineering
-        description: Run structured fault injection experiments following chaos engineering principles.
-      - name: Observability Validation
-        description: Verify that monitoring and alerting systems detect and respond to failures correctly.
-      - name: Game Days
-        description: Conduct planned game day exercises simulating failure scenarios for team readiness.
-      - name: Automated Pipeline Testing
-        description: Integrate resilience testing into CI/CD pipelines for continuous validation.
-      - name: Multi-region Failover Testing
-        description: Test cross-region failover mechanisms and recovery time objectives.
-  - type: Integrations
-    data:
-      - name: Amazon CloudWatch
-        description: Stop conditions use CloudWatch alarms to automatically halt experiments.
-      - name: AWS IAM
-        description: Task execution roles define which AWS resources experiments can affect.
-      - name: Amazon EC2
-        description: Stop instances, terminate instances, and inject CPU/memory stress on EC2.
-      - name: Amazon ECS
-        description: Stop ECS tasks and inject faults into containerized workloads.
-      - name: Amazon EKS
-        description: Terminate Kubernetes nodes and pods running on EKS.
-      - name: Amazon RDS
-        description: Trigger RDS failovers, reboot instances, and pause cluster I/O.
-      - name: AWS Lambda
-        description: Inject latency and errors into Lambda function invocations.
-      - name: Amazon DynamoDB
-        description: Pause DynamoDB replication between replicas.
-  - type: Integrations
-    url: https://aws.amazon.com/marketplace/
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-create-target-account-configuration-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-update-target-account-configuration-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-target-account-configurations-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-experiment-target-account-configurations-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-list-target-account-configurations-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-fault-injection-simulator-delete-target-account-configuration-request-schema.json
 integrations:
-  - name: Sign in
-  - name: Agent Mode
-  - name: Why AWS Marketplace?
-  - name: Get started in AWS Marketplace
-  - name: Industry
-  - name: Resources
-  - name: Become a Channel Partner
-  - name: Sell in AWS Marketplace
-  - name: Manage Your Account
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Sign in
+- name: Agent Mode
+- name: Why AWS Marketplace?
+- name: Get started in AWS Marketplace
+- name: Industry
+- name: Resources
+- name: Become a Channel Partner
+- name: Sell in AWS Marketplace
+- name: Manage Your Account
 x-parent: amazon-web-services
 x-relationship: product
+x-enrichment:
+  date: '2026-11-11'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v6

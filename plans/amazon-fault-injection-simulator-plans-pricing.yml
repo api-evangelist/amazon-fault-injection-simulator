@@ -2,6 +2,7 @@
 generated: '2026-10-28'
 method: searched
 source: https://aws.amazon.com/fis/pricing/
+name: Amazon Fault Injection Simulator API Plans
 sources:
 - https://aws.amazon.com/fis/pricing/
 provenance:
@@ -41,7 +42,7 @@ plans:
   period: per-use
   unit: report
 x-canonical:
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid

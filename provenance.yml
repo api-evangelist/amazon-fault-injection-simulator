@@ -5,6 +5,9 @@ artifacts:
   agentic-access/amazon-fault-injection-simulator-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/amazon-fault-injection-simulator-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/amazon-fault-injection-simulator-discover-action-detail-workflow.yml:
     method: derived
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
@@ -28,6 +31,18 @@ artifacts:
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   authentication/amazon-fault-injection-simulator-authentication.yml:
     method: derived
+    evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
+  changelog/amazon-fault-injection-simulator-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/amazon-fault-injection-simulator-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/amazon-fault-injection-simulator-actions-api.opencollection.json:
     method: derived
@@ -71,6 +86,21 @@ artifacts:
   collections/amazon-fis.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  compliance/amazon-fault-injection-simulator-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-fault-injection-simulator-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-fault-injection-simulator-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-fault-injection-simulator-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/amazon-fault-injection-simulator-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/amazon-fis-action-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -107,13 +137,73 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-fault-injection-simulator-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
   integrations/amazon-fault-injection-simulator-integration-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  json-ld/amazon-fault-injection-simulator-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/amazon-fis-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-create-target-account-configuration-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-delete-target-account-configuration-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-get-target-resource-type-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-get-target-resource-type-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-experiment-resolved-targets-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-experiment-resolved-targets-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-experiment-target-account-configurations-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-tags-for-resource-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-tags-for-resource-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-target-account-configurations-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-target-account-configurations-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-target-resource-types-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-list-target-resource-types-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-tag-resource-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-tag-resource-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-untag-resource-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-untag-resource-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-fault-injection-simulator-update-target-account-configuration-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-fis-action-schema.json:
@@ -179,7 +269,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -248,6 +338,21 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amazon-fault-injection-simulator-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/amazon-fault-injection-simulator-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-fault-injection-simulator-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-fault-injection-simulator-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-fault-injection-simulator-actions-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -272,16 +377,28 @@ artifacts:
   openapi/amazon-fault-injection-simulator-targetaccountconfigurations-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
+  packages/amazon-fault-injection-simulator-packages.yml:
+    method: unknown
+    evidence: no authorship recorded
+  patterns/amazon-fault-injection-simulator-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/amazon-fault-injection-simulator-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
   postman/amazon-fis.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  privacy/amazon-fault-injection-simulator-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-fault-injection-simulator-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   rules/amazon-fault-injection-simulator-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-fault-injection-simulator-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-fault-injection-simulator-spectral-rules.yml:
@@ -303,8 +420,27 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   smithy/fis-2020-12-01.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/fis/service/2020-12-01/fis-2020-12-01.json
+      (sha256 f35ebdf58806, fetched 2026-11-11T21:09:48+00:00)
+  terms/amazon-fault-injection-simulator-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-fault-injection-simulator-vendors.yml:
     method: unknown
     evidence: no authorship recorded
+  vocabulary/amazon-fault-injection-simulator-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
   vocabulary/amazon-fis-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-fault-injection-simulator-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-fault-injection-simulator-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-fault-injection-simulator-well-known.yml:
     method: unknown
     evidence: no authorship recorded
